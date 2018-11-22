@@ -2,13 +2,26 @@ package com.example.administrator.xingyi.model;
 
 import java.util.Date;
 
-public class user {
+public class User {//用户实体类
     private int _id;//用户ID
     private String name;//用户名
     private String pwd;//用户密码
     private int tel;//手机号
     private String address;//地址
-    private Date registrationdate;//注册日期
+    private String registrationDate;//注册日期
+
+    public User(){
+        super();
+    }
+
+    public User(int _id, String name, String pwd, int tel, String address, String registrationDate) {
+        this._id = _id;
+        this.name = name;
+        this.pwd = pwd;
+        this.tel = tel;
+        this.address = address;
+        this.registrationDate = registrationDate;
+    }
 
     public int get_id() {
         return _id;
@@ -50,11 +63,11 @@ public class user {
         this.address = address;
     }
 
-    public Date getRegistrationdate() {
-        return registrationdate;
+    public String getRegistrationDate() {
+        return registrationDate;
     }
 
-    public void setRegistrationdate(Date registrationdate) {
-        this.registrationdate = registrationdate;
+    public void setRegistrationDate(String registrationDate) {
+        this.registrationDate = registrationDate;
     }
 }
