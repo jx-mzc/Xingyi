@@ -8,6 +8,7 @@ public class Project {//公益项目实体类
     private String projectUse;//公益项目用途
     private int companyId;//资助企业ID
     private String projectSponser;//公益项目资助方
+    private int organizationId;//发起组织ID
     private String projectOriginator;//公益项目发起方
     private int projectNeed;//公益项目所需星星
     private int projectHave;//公益项目已筹集的星星
@@ -18,8 +19,10 @@ public class Project {//公益项目实体类
         super();
     }
 
-    public Project(int _id,int adminId, String projectName,String projectIntroduction,String projectUse,int companyId, String projectSponser,
-                   String projectOriginator,int projectNeed,int projectHave,int projectMessageNum,int projectPraiseNum){
+    public Project(int _id, int adminId, String projectName, String projectIntroduction, String projectUse,
+                   int companyId, String projectSponser, int organizationId, String projectOriginator,
+                   int projectNeed, int projectHave, int projectMessageNum, int projectPraiseNum)
+    {
         this._id = _id;
         this.adminId = adminId;
         this.projectName = projectName;
@@ -27,6 +30,7 @@ public class Project {//公益项目实体类
         this.projectUse = projectUse;
         this.companyId = companyId;
         this.projectSponser = projectSponser;
+        this.organizationId = organizationId;
         this.projectOriginator = projectOriginator;
         this.projectNeed = projectNeed;
         this.projectHave = projectHave;
@@ -88,6 +92,14 @@ public class Project {//公益项目实体类
 
     public void setProjectSponser(String projectSponser) {
         this.projectSponser = projectSponser;
+    }
+
+    public int getOrganizationId() {
+        return organizationId;
+    }
+
+    public void setOrganizationId(int organizationId) {
+        this.organizationId = organizationId;
     }
 
     public String getProjectOriginator() {

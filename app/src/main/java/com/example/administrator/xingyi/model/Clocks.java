@@ -1,18 +1,20 @@
 package com.example.administrator.xingyi.model;
 
 
-public class Clock {//打卡实体类
+public class Clocks {//打卡实体类
     private int _id;//打卡ID
     private int userId;//用户ID
+    private String state;//打卡状态
     private String clockDate;//打卡日期
 
-    public Clock(){
+    public Clocks(){
         super();
     }
 
-    public Clock(int _id,int userId,String clockDate){
+    public Clocks(int _id, int userId, String state, String clockDate) {
         this._id = _id;
         this.userId = userId;
+        this.state = state;
         this.clockDate = clockDate;
     }
 
@@ -30,6 +32,14 @@ public class Clock {//打卡实体类
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getClockDate() {
