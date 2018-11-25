@@ -42,6 +42,10 @@ public class UserDAO {
         values.put("tel",user.getTel());
         values.put("address",user.getAddress());
         values.put("registrationDate",user.getRegistrationDate());
+        values.put("donableStars",user.getDonableStars());
+        values.put("donatedStars",user.getDonatedStars());
+        values.put("exchangeableStars",user.getExchangeableStars());
+        values.put("exchangedStars",user.getExchangedStars());
         db.insert("tb_user",null,values);
     }
     /**
@@ -71,6 +75,10 @@ public class UserDAO {
         values.put("tel",user.getTel());
         values.put("address",user.getAddress());
         values.put("registrationDate",user.getRegistrationDate());
+        values.put("donableStars",user.getDonableStars());
+        values.put("donatedStars",user.getDonatedStars());
+        values.put("exchangeableStars",user.getExchangeableStars());
+        values.put("exchangedStars",user.getExchangedStars());
         db.update("tb_user",values,"_id = ?",new String[]{String.valueOf(user.get_id())});
     }
     /**
@@ -90,31 +98,39 @@ public class UserDAO {
                     cursor.getString(cursor.getColumnIndex("pwd")),
                     cursor.getInt(cursor.getColumnIndex("tel")),
                     cursor.getString(cursor.getColumnIndex("address")),
-                    cursor.getString(cursor.getColumnIndex("registrationDate")));
+                    cursor.getString(cursor.getColumnIndex("registrationDate")),
+                    cursor.getInt(cursor.getColumnIndex("donableStars")),
+                    cursor.getInt(cursor.getColumnIndex("donatedStars")),
+                    cursor.getInt(cursor.getColumnIndex("exchangeableStars")),
+                    cursor.getInt(cursor.getColumnIndex("exchangedStars")));
         }
         return null;// 如果没有信息，则返回null
     }
     /**
      * @Author:  Infinity
      * @Date:  2018/11/23 0023
-     * @Description:查询多条用户信息
+     * @Description: 查询多条用户信息
      */
     public List<User> getScrollData(int start, int count){
-        List<User> commodityList = new ArrayList<User>();// 创建集合对象
+        List<User> userList = new ArrayList<User>();// 创建集合对象
         db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
         Cursor cursor = db.rawQuery("select * from tb_user limit ? offset ?",
                 new String[] { String.valueOf(count),String.valueOf(start-1) });
         while (cursor.moveToNext()){
             //遍历Cursor对象，并将数据添加到集合中返回
-            commodityList.add(new User(
+            userList.add(new User(
                     cursor.getInt(cursor.getColumnIndex("_id")),
                     cursor.getString(cursor.getColumnIndex("name")),
                     cursor.getString(cursor.getColumnIndex("pwd")),
                     cursor.getInt(cursor.getColumnIndex("tel")),
                     cursor.getString(cursor.getColumnIndex("address")),
-                    cursor.getString(cursor.getColumnIndex("registrationDate"))));
+                    cursor.getString(cursor.getColumnIndex("registrationDate")),
+                    cursor.getInt(cursor.getColumnIndex("donableStars")),
+                    cursor.getInt(cursor.getColumnIndex("donatedStars")),
+                    cursor.getInt(cursor.getColumnIndex("exchangeableStars")),
+                    cursor.getInt(cursor.getColumnIndex("exchangedStars"))));
         }
-        return commodityList;// 返回集合
+        return userList;// 返回集合
     }
     /**
      * @Author:  Infinity

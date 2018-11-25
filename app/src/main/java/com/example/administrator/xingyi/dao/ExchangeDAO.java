@@ -2,9 +2,13 @@ package com.example.administrator.xingyi.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.administrator.xingyi.model.Exchange;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Project Name:  Xingyi
@@ -71,5 +75,105 @@ public class ExchangeDAO {
         values.put("costStars",exchange.getCostStars());
         values.put("state",exchange.getState());
         db.update("tb_exchange",values,"_id = ?",new String[]{String.valueOf(exchange.get_id())});
+    }
+    /**
+     * @Author:  Infinity
+     * @Date:  2018/11/25 0025
+     * @Description:  查询单条兑换单信息
+     */
+    public Exchange query(int _id){
+        db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
+        Cursor cursor = db.query("tb_exchange",null,"_id = ?",new String[]{String.valueOf(_id)},
+                null,null,null);
+        if (cursor.moveToNext()){
+            //遍历Cursor对象，并将数据存储到Exchange类中返回
+            return new Exchange(
+                    cursor.getInt(cursor.getColumnIndex("_id")),
+                    cursor.getInt(cursor.getColumnIndex("userId")),
+                    cursor.getString(cursor.getColumnIndex("receiver")),
+                    cursor.getInt(cursor.getColumnIndex("tel")),
+                    cursor.getString(cursor.getColumnIndex("address")),
+                    cursor.getString(cursor.getColumnIndex("exchangeTime")),
+                    cursor.getInt(cursor.getColumnIndex("costStars")),
+                    cursor.getString(cursor.getColumnIndex("state")));
+        }
+        return null;// 如果没有信息，则返回null
+    }
+    /**
+     * @Author:  Infinity
+     * @Date:  2018/11/25 0025
+     * @Description:  查询所有兑换单信息
+     */
+    public List<Exchange> getScrollData(int start, int count){
+        List<Exchange> exchangeList = new ArrayList<Exchange>();// 创建集合对象
+        db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
+        Cursor cursor = db.rawQuery("select * from tb_exchange limit ? offset ?",
+                new String[] {String.valueOf(count),String.valueOf(start-1)});
+        while (cursor.moveToNext()){
+            //遍历Cursor对象，并将数据添加到集合中返回
+            exchangeList.add(new Exchange(
+                    cursor.getInt(cursor.getColumnIndex("_id")),
+                    cursor.getInt(cursor.getColumnIndex("userId")),
+                    cursor.getString(cursor.getColumnIndex("receiver")),
+                    cursor.getInt(cursor.getColumnIndex("tel")),
+                    cursor.getString(cursor.getColumnIndex("address")),
+                    cursor.getString(cursor.getColumnIndex("exchangeTime")),
+                    cursor.getInt(cursor.getColumnIndex("costStars")),
+                    cursor.getString(cursor.getColumnIndex("state"))));
+        }
+        return exchangeList;// 返回集合
+    }
+    /**
+     * @Author:  Infinity
+     * @Date:  2018/11/25 0025
+     * @Description:  查询某个用户的兑换单
+     */
+    public List<Exchange> getExchangeScrollData(int start, int count,int userId){
+        List<Exchange> exchangeList = new ArrayList<Exchange>();// 创建集合对象
+        db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
+        Cursor cursor = db.rawQuery("select * from tb_exchange where userId = ? limit ? offset ?",
+                new String[] {String.valueOf(userId),String.valueOf(count),String.valueOf(start-1)});
+        while (cursor.moveToNext()){
+            //遍历Cursor对象，并将数据添加到集合中返回
+            exchangeList.add(new Exchange(
+                    cursor.getInt(cursor.getColumnIndex("_id")),
+                    cursor.getInt(cursor.getColumnIndex("userId")),
+                    cursor.getString(cursor.getColumnIndex("receiver")),
+                    cursor.getInt(cursor.getColumnIndex("tel")),
+                    cursor.getString(cursor.getColumnIndex("address")),
+                    cursor.getString(cursor.getColumnIndex("exchangeTime")),
+                    cursor.getInt(cursor.getColumnIndex("costStars")),
+                    cursor.getString(cursor.getColumnIndex("state"))));
+        }
+        return exchangeList;// 返回集合
+    }
+    /**
+     * @Author:  Infinity
+     * @Date:  2018/11/25 0025
+     * @Description:  获取兑换单总记录数
+     */
+    public long getCount(){
+        db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
+        Cursor cursor = db.rawQuery("select count(_id) from tb_exchange",null);// 获取兑换单总记录数
+        if (cursor.moveToNext())// 判断Cursor中是否有数据
+        {
+            return cursor.getLong(0);// 返回总记录数
+        }
+        return 0;// 如果没有数据，则返回0
+    }
+    /**
+     * @Author:  Infinity
+     * @Date:  2018/11/25 0025
+     * @Description:  获取某个用户的某个用户的兑换单总记录数
+     */
+    public long getExchangeCount(int userId){
+        db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
+        Cursor cursor = db.rawQuery("select count(_id) from tb_exchange where userId = ?",
+                new String[]{String.valueOf(userId)});// 获取某个用户的兑换单总记录数
+        if (cursor.moveToNext())// 判断Cursor中是否有数据
+        {
+            return cursor.getLong(0);// 返回总记录数
+        }
+        return 0;// 如果没有数据，则返回0
     }
 }

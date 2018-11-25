@@ -9,18 +9,28 @@ public class User {//用户实体类
     private int tel;//手机号
     private String address;//地址
     private String registrationDate;//注册日期
+    private int donableStars;//可捐星星
+    private int donatedStars;//已捐星星
+    private int exchangeableStars;//可兑星星
+    private int exchangedStars;//已兑星星
 
     public User(){
         super();
     }
 
-    public User(int _id, String name, String pwd, int tel, String address, String registrationDate) {
+    public User(int _id, String name, String pwd, int tel, String address, String registrationDate, int donableStars,
+                int donatedStars, int exchangeableStars, int exchangedStars)
+    {
         this._id = _id;
         this.name = name;
         this.pwd = pwd;
         this.tel = tel;
         this.address = address;
         this.registrationDate = registrationDate;
+        this.donableStars = donableStars;
+        this.donatedStars = donatedStars;
+        this.exchangeableStars = exchangeableStars;
+        this.exchangedStars = exchangedStars;
     }
 
     public int get_id() {
@@ -69,5 +79,37 @@ public class User {//用户实体类
 
     public void setRegistrationDate(String registrationDate) {
         this.registrationDate = registrationDate;
+    }
+
+    public int getDonableStars() {
+        return donableStars;
+    }
+
+    public void setDonableStars(int donableStars) {
+        this.donableStars = donableStars;
+    }
+
+    public int getDonatedStars() {
+        return donatedStars;
+    }
+
+    public void setDonatedStars(int donatedStars) {
+        this.donatedStars = donatedStars;
+    }
+
+    public int getExchangeableStars() {
+        return exchangeableStars;
+    }
+
+    public void setExchangeableStars(int exchangeableStars) {
+        this.exchangeableStars = exchangeableStars;
+    }
+
+    public int getExchangedStars() {
+        return exchangedStars;
+    }
+
+    public void setExchangedStars(int exchangedStars) {
+        this.exchangedStars = exchangedStars;
     }
 }

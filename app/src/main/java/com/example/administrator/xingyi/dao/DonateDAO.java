@@ -134,7 +134,7 @@ public class DonateDAO {
     /**
      * @Author:  Infinity
      * @Date:  2018/11/24 0024
-     * @Description:  查询某个项目的捐款信息，按照捐赠星星数降序排序
+     * @Description:  查询某个项目的捐赠信息，按照捐赠星星数降序排序
      */
     public List<Donate> getUserScrollData(int start, int count,int projectId){
         List<Donate> donateList = new ArrayList<Donate>();// 创建集合对象

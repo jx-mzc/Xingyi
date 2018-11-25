@@ -1,6 +1,7 @@
 package com.example.administrator.xingyi.model;
 
 public class NewsMessage {//动态实体类
+    private int _id;//动态留言ID
     private int userId;//用户ID
     private int newsId;//动态ID
     private String content;//动态留言内容
@@ -10,11 +11,20 @@ public class NewsMessage {//动态实体类
         super();
     }
 
-    public NewsMessage(int userId, int newsId, String content, String messageTime) {
+    public NewsMessage(int _id, int userId, int newsId, String content, String messageTime) {
+        this._id = _id;
         this.userId = userId;
         this.newsId = newsId;
         this.content = content;
         this.messageTime = messageTime;
+    }
+
+    public int get_id() {
+        return _id;
+    }
+
+    public void set_id(int _id) {
+        this._id = _id;
     }
 
     public int getUserId() {

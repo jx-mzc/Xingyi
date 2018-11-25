@@ -5,139 +5,136 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.administrator.xingyi.model.Clocks;
-
+import com.example.administrator.xingyi.model.StepNum;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * Project Name:  Xingyi
- * Date:  2018/11/24 0024
+ * Date:  2018/11/25 0025
  * Author:  Infinity
  */
-public class ClocksDAO {
+public class StepNumDAO {
     private MyDatabaseHelper myDatabaseHelper;//创建MyDatabaseHelper对象
     private SQLiteDatabase db;// 创建SQLiteDatabase对象
     private ContentValues values;
-
     /**
      * @Author:  Infinity
-     * @Date:  2018/11/24 0024
+     * @Date:  2018/11/25 0025
      * @Description:  定义构造函数
      */
-    public ClocksDAO(Context context){
+    public StepNumDAO(Context context){
         myDatabaseHelper = new MyDatabaseHelper(context);//初始化MyDatabaseHelper对象
     }
     /**
      * @Author:  Infinity
-     * @Date:  2018/11/24 0024
-     * @Description:  添加打卡信息
+     * @Date:  2018/11/25 0025
+     * @Description:  添加步数信息
      */
-    public void add(Clocks clocks){
+    public void add(StepNum stepNum){
         db = myDatabaseHelper.getWritableDatabase();
         values = new ContentValues();
         //开始组装数据
-        values.put("userId", clocks.getUserId());
-        values.put("state",clocks.getState());
-        values.put("clockDate",clocks.getClockDate());
-        db.insert("tb_clocks",null,values);
+        values.put("userId", stepNum.getUserId());
+        values.put("stepNums",stepNum.getStepNums());
+        values.put("stepDate",stepNum.getStepDate());
+        db.insert("tb_stepNum",null,values);
     }
     /**
      * @Author:  Infinity
-     * @Date:  2018/11/24 0024
-     * @Description:  删除打卡信息
+     * @Date:  2018/11/25 0025
+     * @Description:  删除步数信息
      */
     public void delete(Integer... ids){
         if(ids.length > 0){
             db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
             for (int _id:ids) {
-                db.delete("tb_clocks","_id = ?",new String[]{String.valueOf(_id)});
+                db.delete("tb_stepNum","_id = ?",new String[]{String.valueOf(_id)});
             }
         }
     }
     /**
      * @Author:  Infinity
-     * @Date:  2018/11/24 0024
-     * @Description:  更新打卡信息
+     * @Date:  2018/11/25 0025
+     * @Description:  更新步数信息
      */
-    public void update(Clocks clocks){
+    public void update(StepNum stepNum){
         db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
         values = new ContentValues();
         //开始组装数据
-        values.put("userId",clocks.getUserId());
-        values.put("state",clocks.getState());
-        values.put("clockDate",clocks.getClockDate());
-        db.update("tb_clocks",values,"_id = ?",new String[]{String.valueOf(clocks.get_id())});
+        values.put("userId", stepNum.getUserId());
+        values.put("stepNums",stepNum.getStepNums());
+        values.put("stepDate",stepNum.getStepDate());
+        db.update("tb_stepNum",values,"_id = ?",new String[]{String.valueOf(stepNum.get_id())});
     }
     /**
      * @Author:  Infinity
-     * @Date:  2018/11/24 0024
-     * @Description:  查询单条打卡信息
+     * @Date:  2018/11/25 0025
+     * @Description:  查询单条步数信息
      */
-    public Clocks query(int _id){
+    public StepNum query(int _id){
         db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
-        Cursor cursor = db.query("tb_clocks",null,"_id = ?",new String[]{String.valueOf(_id)},
+        Cursor cursor = db.query("tb_stepNum",null,"_id = ?",new String[]{String.valueOf(_id)},
                 null,null,null);
         if (cursor.moveToNext()){
-            //遍历Cursor对象，并将数据存储到Clocks类中返回
-            return new Clocks(
+            //遍历Cursor对象，并将数据存储到StepNum类中返回
+            return new StepNum(
                     cursor.getInt(cursor.getColumnIndex("_id")),
                     cursor.getInt(cursor.getColumnIndex("userId")),
-                    cursor.getString(cursor.getColumnIndex("state")),
-                    cursor.getString(cursor.getColumnIndex("clockDate")));
+                    cursor.getInt(cursor.getColumnIndex("stepNums")),
+                    cursor.getString(cursor.getColumnIndex("stepDate")));
         }
         return null;// 如果没有信息，则返回null
     }
     /**
      * @Author:  Infinity
-     * @Date:  2018/11/24 0024
-     * @Description:  查询多条打卡信息
+     * @Date:  2018/11/25 0025
+     * @Description:  查询多条步数信息
      */
-    public List<Clocks> getScrollData(int start, int count){
-        List<Clocks> clocksList = new ArrayList<Clocks>();// 创建集合对象
+    public List<StepNum> getScrollData(int start, int count){
+        List<StepNum> stepNumList = new ArrayList<StepNum>();// 创建集合对象
         db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
-        Cursor cursor = db.rawQuery("select * from tb_clocks limit ? offset ?",
+        Cursor cursor = db.rawQuery("select * from tb_stepNum limit ? offset ?",
                 new String[] {String.valueOf(count),String.valueOf(start-1)});
         while (cursor.moveToNext()){
             //遍历Cursor对象，并将数据添加到集合中返回
-            clocksList.add(new Clocks(
+            stepNumList.add(new StepNum(
                     cursor.getInt(cursor.getColumnIndex("_id")),
                     cursor.getInt(cursor.getColumnIndex("userId")),
-                    cursor.getString(cursor.getColumnIndex("state")),
-                    cursor.getString(cursor.getColumnIndex("clockDate"))));
+                    cursor.getInt(cursor.getColumnIndex("stepNums")),
+                    cursor.getString(cursor.getColumnIndex("stepDate"))));
         }
-        return clocksList;// 返回集合
+        return stepNumList;// 返回集合
     }
     /**
      * @Author:  Infinity
-     * @Date:  2018/11/24 0024
-     * @Description:  查询某个用户的多条打卡信息
+     * @Date:  2018/11/25 0025
+     * @Description:  查询某个用户的多条步数信息
      */
-    public List<Clocks> getClocksScrollData(int start, int count,int userId){
-        List<Clocks> clocksList = new ArrayList<Clocks>();// 创建集合对象
+    public List<StepNum> getStepNumScrollData(int start, int count,int userId){
+        List<StepNum> stepNumList = new ArrayList<StepNum>();// 创建集合对象
         db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
-        Cursor cursor = db.rawQuery("select * from tb_clocks where userId = ? limit ? offset ?",
+        Cursor cursor = db.rawQuery("select * from tb_stepNum where userId = ? limit ? offset ?",
                 new String[] {String.valueOf(userId),String.valueOf(count),String.valueOf(start-1)});
         while (cursor.moveToNext()){
             //遍历Cursor对象，并将数据添加到集合中返回
-            clocksList.add(new Clocks(
+            stepNumList.add(new StepNum(
                     cursor.getInt(cursor.getColumnIndex("_id")),
                     cursor.getInt(cursor.getColumnIndex("userId")),
-                    cursor.getString(cursor.getColumnIndex("state")),
-                    cursor.getString(cursor.getColumnIndex("clockDate"))));
+                    cursor.getInt(cursor.getColumnIndex("stepNums")),
+                    cursor.getString(cursor.getColumnIndex("stepDate"))));
         }
-        return clocksList;// 返回集合
+        return stepNumList;// 返回集合
     }
     /**
      * @Author:  Infinity
-     * @Date:  2018/11/24 0023
-     * @Description:  获取打卡总记录数
+     * @Date:  2018/11/25 0025
+     * @Description:  获取步数总记录数
      */
     public long getCount() {
         db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
-        Cursor cursor = db.rawQuery("select count(_id) from tb_clocks", null);// 获取打卡总记录数
+        Cursor cursor = db.rawQuery("select count(_id) from tb_stepNum", null);// 获取步数总记录数
         if (cursor.moveToNext())// 判断Cursor中是否有数据
         {
             return cursor.getLong(0);// 返回总记录数
@@ -146,13 +143,13 @@ public class ClocksDAO {
     }
     /**
      * @Author:  Infinity
-     * @Date:  2018/11/24 0023
-     * @Description:  获取某个用户的总打卡记录数
+     * @Date:  2018/11/25 0025
+     * @Description:  获取某个用户步数总记录数
      */
-    public long getClocksCount(int userId) {
+    public long getStepNumCount(int userId) {
         db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
-        Cursor cursor = db.rawQuery("select count(_id) from tb_clocks where userId = ?",
-                new String[]{String.valueOf(userId)});// 获取某个用户的总打卡记录数
+        Cursor cursor = db.rawQuery("select count(_id) from tb_stepNum where userId = ?",
+                new String[]{String.valueOf(userId)});// 获取某个用户步数总记录数
         if (cursor.moveToNext())// 判断Cursor中是否有数据
         {
             return cursor.getLong(0);// 返回总记录数
