@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_object"
+        android:icon="@drawable/ic_project"
+        android:title="项目" />
+    <item
+        android:id="@+id/item_getstars"
+        android:icon="@drawable/ic_getstars"
+        android:title="赚星" />
+
+    <item
+        android:id="@+id/item_news"
+        android:icon="@drawable/ic_news"
+        android:title="动态" />
+
+    <item
+        android:id="@+id/item_exchange"
+        android:icon="@drawable/ic_exchange"
+        android:title="兑换" />
+    <item
+        android:id="@+id/item_more"
+        android:icon="@drawable/ic_more"
+        android:title="更多" />
+
+</menu>
