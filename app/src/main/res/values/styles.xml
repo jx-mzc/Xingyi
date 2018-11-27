@@ -8,5 +8,11 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/tab_checked</item>
+        <item name="colorPrimaryDark">@color/tab_checked</item>
+        <item name="colorAccent">@color/tab_checked</item>
+    </style>
 
 </resources>

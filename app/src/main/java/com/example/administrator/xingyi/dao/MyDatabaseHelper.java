@@ -3,9 +3,8 @@ package com.example.administrator.xingyi.dao;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Build;
 
-import com.example.administrator.xingyi.Sqlite.Sqlite;
+import com.example.administrator.xingyi.sqlite.Sqlite;
 
 /**
  * Project Name:  Xingyi

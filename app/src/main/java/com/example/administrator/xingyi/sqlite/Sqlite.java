@@ -1,4 +1,4 @@
-package com.example.administrator.xingyi.Sqlite;
+package com.example.administrator.xingyi.sqlite;
 
 /**
  * Project Name:  Xingyi

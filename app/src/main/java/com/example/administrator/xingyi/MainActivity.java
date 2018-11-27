@@ -8,6 +8,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.administrator.xingyi.dao.MyDatabaseHelper;
+import com.example.administrator.xingyi.exchange.ExchangeFragment;
+import com.example.administrator.xingyi.getStars.GetStarsFragment;
+import com.example.administrator.xingyi.more.MoreFragment;
+import com.example.administrator.xingyi.news.NewsFragment;
 import com.example.administrator.xingyi.project.ProjectFragment;
 
 
@@ -22,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        myDatabaseHelper = new MyDatabaseHelper(MainActivity.this);
-        myDatabaseHelper.getWritableDatabase();
+        //myDatabaseHelper = new MyDatabaseHelper(MainActivity.this);
+       // myDatabaseHelper.getWritableDatabase();
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         //默认 >3 的选中效果会影响ViewPager的滑动切换时的效果，故利用反射去掉
@@ -89,10 +93,10 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new ProjectFragment());
-        adapter.addFragment(BaseFragment.newInstance("赚星"));
-        adapter.addFragment(BaseFragment.newInstance("动态"));
-        adapter.addFragment(BaseFragment.newInstance("兑换"));
-        adapter.addFragment(BaseFragment.newInstance("更多"));
+        adapter.addFragment(new GetStarsFragment());
+        adapter.addFragment(new NewsFragment());
+        adapter.addFragment(new ExchangeFragment());
+        adapter.addFragment(new MoreFragment());
         viewPager.setAdapter(adapter);
     }
 }
