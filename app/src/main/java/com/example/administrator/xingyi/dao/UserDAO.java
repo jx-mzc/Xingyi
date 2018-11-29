@@ -106,6 +106,33 @@ public class UserDAO {
         }
         return null;// 如果没有信息，则返回null
     }
+
+    /**
+     * @Author:  ting
+     * @Date:  2018/11/28 0023
+     * @Description:  通过用户名和密码查询单条用户信息
+     */
+    public User query(String username, String password){
+        db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
+        Cursor cursor = db.query("tb_user",null,"name = ? and pwd = ?",new String[]{username, password},
+                null,null,null);
+        if (cursor.moveToNext()){
+            //遍历Cursor对象，并将数据存储到User类中返回
+            return new User(
+                    cursor.getInt(cursor.getColumnIndex("_id")),
+                    cursor.getString(cursor.getColumnIndex("name")),
+                    cursor.getString(cursor.getColumnIndex("pwd")),
+                    cursor.getInt(cursor.getColumnIndex("tel")),
+                    cursor.getString(cursor.getColumnIndex("address")),
+                    cursor.getString(cursor.getColumnIndex("registrationDate")),
+                    cursor.getInt(cursor.getColumnIndex("donableStars")),
+                    cursor.getInt(cursor.getColumnIndex("donatedStars")),
+                    cursor.getInt(cursor.getColumnIndex("exchangeableStars")),
+                    cursor.getInt(cursor.getColumnIndex("exchangedStars")));
+        }
+        return null;// 如果没有信息，则返回null
+    }
+
     /**
      * @Author:  Infinity
      * @Date:  2018/11/23 0023
