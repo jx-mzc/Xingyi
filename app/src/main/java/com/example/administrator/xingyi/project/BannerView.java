@@ -25,11 +25,14 @@ public class BannerView {
 
     private MZBannerView mzBannerView;
     private int[] RES;
-    private View view;
     private Context context;
 
 
     public BannerView(MZBannerView mzBannerView, final Context context) {
+        this.context = context;
+        this.mzBannerView = mzBannerView;
+    }
+    public void setBannerView(){
 //设置单击事件
         mzBannerView.setBannerPageClickListener(new MZBannerView.BannerPageClickListener() {
             @Override

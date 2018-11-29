@@ -10,12 +10,9 @@
         android:layout_alignParentTop="true"
         app:icon_back="false"
         app:size_title="20sp"
+        app:color_title="#FFFFFF"
         app:title="公益项目" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/title_project"
-        android:background="@drawable/bottom_shadow" />
+
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"

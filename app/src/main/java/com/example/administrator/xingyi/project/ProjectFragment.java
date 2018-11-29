@@ -1,23 +1,20 @@
 package com.example.administrator.xingyi.project;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.Toast;
+
 
 import com.example.administrator.xingyi.R;
+import com.hjq.bar.TitleBar;
 import com.zhouwei.mzbanner.MZBannerView;
-import com.zhouwei.mzbanner.holder.MZHolderCreator;
-import com.zhouwei.mzbanner.holder.MZViewHolder;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Project Name:  Xingyi
@@ -26,6 +23,7 @@ import java.util.List;
  */
 public class ProjectFragment extends Fragment {
 
+    private TitleBar titleBar;
     private MZBannerView mzBannerView;
     private BannerView bannerView;
     public ProjectFragment(){
@@ -41,7 +39,7 @@ public class ProjectFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        mzBannerView.pause();
+        mzBannerView.pause();//暂停轮播
     }
 
 
@@ -50,8 +48,11 @@ public class ProjectFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_project,null);
         mzBannerView = (MZBannerView)view.findViewById(R.id.project_banner);
-        bannerView = new BannerView(mzBannerView,getContext());//利用框架设置轮播图
-        mzBannerView.start();
+        titleBar = (TitleBar)view.findViewById(R.id.title_project);
+        bannerView = new BannerView(mzBannerView,getContext());
+        bannerView.setBannerView();//利用框架设置轮播图
+        mzBannerView.start();//开始轮播
+        titleBar.setBackgroundColor(getResources().getColor(R.color.tab_checked,null));
         return view;
     }
 }
