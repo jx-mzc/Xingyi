@@ -10,26 +10,17 @@
         android:layout_alignParentTop="true"
         app:icon_back="false"
         app:size_title="20sp"
+        app:color_title="#FFFFFF"
         app:title="更多" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/title_more"
-        android:background="@drawable/bottom_shadow" />
-    <ScrollView
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv_more"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
         android:layout_below="@id/title_more">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
+    </android.support.v7.widget.RecyclerView>
 
-        </RelativeLayout>
-
-
-    </ScrollView>
 
 
 

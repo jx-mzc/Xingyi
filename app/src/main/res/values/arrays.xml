@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="more">
+        <item>我的消息</item>
+        <item>我的星星</item>
+        <item>已捐项目</item>
+        <item>关于我们</item>
+        <item>意见反馈</item>
+        <item>设置</item>
+    </string-array>
+</resources>
