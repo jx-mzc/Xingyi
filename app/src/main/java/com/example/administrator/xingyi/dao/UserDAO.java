@@ -108,6 +108,20 @@ public class UserDAO {
     }
 
     /**
+     * @Author:  Infinity
+     * @Date:  2018/11/30 0030
+     * @Description:  通过用户名查找用户是否存在
+     */
+    public Boolean query(String username){
+        db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
+        Cursor cursor = db.query("tb_user",null,"name = ? ",new String[]{username},
+                null,null,null);
+        if (cursor.moveToNext()){
+            return true;
+        }
+        return false;
+    }
+    /**
      * @Author:  ting
      * @Date:  2018/11/28 0023
      * @Description:  通过用户名和密码查询单条用户信息
