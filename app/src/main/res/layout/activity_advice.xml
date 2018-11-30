@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".more.advice.AdviceActivity">
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/title_advice"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_55"
+        android:layout_alignParentTop="true"
+        app:icon_left="@drawable/ic_back"
+        app:title_right="发送"
+        app:color_right="@color/gray"
+        app:size_right="17sp"
+        app:size_title="20sp"
+        app:color_title="@color/black"
+        app:title="意见反馈" />
+    <EditText
+        android:id="@+id/et_advice"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_220"
+        android:layout_below="@+id/title_advice"
+        android:gravity="top"
+        android:hint="告诉我们你在使用中发现的问题..."
+        android:paddingLeft="@dimen/dp_5" />
+
+</RelativeLayout>
