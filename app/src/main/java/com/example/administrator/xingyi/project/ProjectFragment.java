@@ -23,7 +23,6 @@ import com.zhouwei.mzbanner.MZBannerView;
  */
 public class ProjectFragment extends Fragment {
 
-    private TitleBar titleBar;
     private MZBannerView mzBannerView;
     private BannerView bannerView;
     public ProjectFragment(){
@@ -48,11 +47,9 @@ public class ProjectFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_project,null);
         mzBannerView = (MZBannerView)view.findViewById(R.id.project_banner);
-        titleBar = (TitleBar)view.findViewById(R.id.title_project);
         bannerView = new BannerView(mzBannerView,getContext());
         bannerView.setBannerView();//利用框架设置轮播图
         mzBannerView.start();//开始轮播
-        titleBar.setBackgroundColor(getResources().getColor(R.color.tab_checked,null));
         return view;
     }
 }

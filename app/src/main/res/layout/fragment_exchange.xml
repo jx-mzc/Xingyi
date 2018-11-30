@@ -6,16 +6,12 @@
     <com.hjq.bar.TitleBar
         android:id="@+id/title_exchange"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_55"
         android:layout_alignParentTop="true"
+        app:color_title="@color/black"
         app:icon_back="false"
         app:size_title="20sp"
         app:title="星星兑换" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/title_exchange"
-        android:background="@drawable/bottom_shadow" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

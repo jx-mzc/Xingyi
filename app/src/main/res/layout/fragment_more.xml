@@ -6,22 +6,28 @@
     <com.hjq.bar.TitleBar
         android:id="@+id/title_more"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_55"
         android:layout_alignParentTop="true"
         app:icon_back="false"
         app:size_title="20sp"
-        app:color_title="#FFFFFF"
+        app:color_title="@color/black"
         app:title="更多" />
-
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rcv_more"
+        android:id="@+id/rcv_more_touxiang"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/title_more">
 
     </android.support.v7.widget.RecyclerView>
 
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv_more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_below="@id/rcv_more_touxiang">
+    </android.support.v7.widget.RecyclerView>
 
 
 </RelativeLayout>

@@ -29,4 +29,3 @@ dependencies {
     implementation 'com.github.pinguo-zhouwei:MZBannerView:v2.0.2'
     implementation 'com.hjq:titlebar:3.5'
 }
-
