@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActivityCollector.addActivity(this);
         //myDatabaseHelper = new MyDatabaseHelper(MainActivity.this);
        // myDatabaseHelper.getWritableDatabase();
         viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -88,6 +89,12 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
         setupViewPager(viewPager);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityCollector.removeActivity(this);
     }
 
     private void setupViewPager(ViewPager viewPager) {
