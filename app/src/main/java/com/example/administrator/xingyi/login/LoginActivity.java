@@ -199,38 +199,46 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btn_login:
                 String account = accountEdit.getText().toString();
                 String password = passwordEdit.getText().toString();
-                UserDAO userDAO = new UserDAO(this);
-                if (userDAO.query(account)){
-                    User user = userDAO.query(account, password);
-                    if (user != null){
-                    editor = pref.edit();
-                    if (rememberPassword.isChecked()){
-                        editor.putBoolean("remember_password",true);
-                        editor.putString("account",account);
-                        editor.putString("password",password);
-                        if (autoLogin.isChecked()){
-                            editor.putBoolean("auto_login",true);
+                if(account.equals("")){
+                    Toast.makeText(LoginActivity.this,"请输入账号！",Toast.LENGTH_SHORT).show();
+                    accountEdit.requestFocus();
+                }else if (password.equals("")){
+                    Toast.makeText(LoginActivity.this,"请输入密码！",Toast.LENGTH_SHORT).show();
+                    passwordEdit.requestFocus();
+                }else {
+                    UserDAO userDAO = new UserDAO(this);
+                    if (userDAO.query(account)){
+                        User user = userDAO.query(account, password);
+                        if (user != null){
+                        editor = pref.edit();
+                        if (rememberPassword.isChecked()){
+                            editor.putBoolean("remember_password",true);
+                            editor.putString("account",account);
+                            editor.putString("password",password);
+                            if (autoLogin.isChecked()){
+                                editor.putBoolean("auto_login",true);
+                            }else {
+                                editor.putBoolean("auto_login",false);
+                            }
                         }else {
-                            editor.putBoolean("auto_login",false);
+                            editor.clear();
                         }
-                    }else {
-                        editor.clear();
-                    }
-                    editor.apply();
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                        editor.apply();
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                        }
+                        else {
+                            Toast.makeText(LoginActivity.this,"密码错误！",Toast.LENGTH_SHORT).show();
+                            passwordEdit.setText("");
+                            passwordEdit.requestFocus();
+                        }
                     }
                     else {
-                        Toast.makeText(LoginActivity.this,"密码错误！",Toast.LENGTH_SHORT).show();
-                        passwordEdit.setText("");
-                        passwordEdit.requestFocus();
+                        Toast.makeText(LoginActivity.this,"该账户不存在！",Toast.LENGTH_SHORT).show();
+                        accountEdit.setText("");
+                        accountEdit.requestFocus();
                     }
-                }
-                else {
-                    Toast.makeText(LoginActivity.this,"该账户不存在！",Toast.LENGTH_SHORT).show();
-                    accountEdit.setText("");
-                    accountEdit.requestFocus();
                 }
                 break;
 
@@ -249,6 +257,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 user.setRegistrationDate("鸡");
                 userDAO2.add(user);
                 Toast.makeText(this,"注册成功！",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tv_forget_pwd:
                 break;
         }
     }
