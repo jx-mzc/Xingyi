@@ -17,10 +17,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.administrator.xingyi.ActivityCollector;
 import com.example.administrator.xingyi.MainActivity;
 import com.example.administrator.xingyi.R;
 import com.example.administrator.xingyi.dao.UserDAO;
 import com.example.administrator.xingyi.model.User;
+import com.example.administrator.xingyi.register.RegisterActivity;
+import com.hjq.bar.OnTitleBarListener;
+import com.hjq.bar.TitleBar;
 
 /**
  * Project Name:  Xingyi
@@ -29,6 +33,7 @@ import com.example.administrator.xingyi.model.User;
  */
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
+    private TitleBar titleBar;
     private EditText accountEdit;
     private EditText passwordEdit;
     private ImageView hideOrShowImage;
@@ -49,11 +54,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ActivityCollector.addActivity(this);
         initView();
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityCollector.removeActivity(this);
+    }
+
     private void initView() {
+        titleBar = findViewById(R.id.title_login);
         accountEdit = findViewById(R.id.et_account);
         passwordEdit = findViewById(R.id.et_password);
         hideOrShowImage = findViewById(R.id.iv_see_password);
@@ -86,6 +99,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
         //设置点击事件
+        titleBar.setOnTitleBarListener(new OnTitleBarListener() {
+            @Override
+            public void onLeftClick(View v) {
+                finish();
+            }
+
+            @Override
+            public void onTitleClick(View v) {
+
+            }
+
+            @Override
+            public void onRightClick(View v) {
+
+            }
+        });
         autoLogin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -243,20 +272,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.tv_register:
-                String account2 = accountEdit.getText().toString();
-                String password2 = passwordEdit.getText().toString();
-                UserDAO userDAO2 = new UserDAO(this);
-                User user = new User();
-                user.setName(account2);
-                user.setPwd(password2);
-                user.setAddress("鸡");
-                user.setDonableStars(100);
-                user.setDonatedStars(100);
-                user.setExchangeableStars(100);
-                user.setExchangedStars(100);
-                user.setRegistrationDate("鸡");
-                userDAO2.add(user);
-                Toast.makeText(this,"注册成功！",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
                 break;
             case R.id.tv_forget_pwd:
                 break;

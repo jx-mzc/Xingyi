@@ -48,8 +48,8 @@
                           <map>
                             <entry key="assetSourceType" value="FILE" />
                             <entry key="autoMirrored" value="true" />
-                            <entry key="outputName" value="ic_qq" />
-                            <entry key="sourceFile" value="C:\Users\Administrator\Desktop\svgicon\qq.svg" />
+                            <entry key="outputName" value="ic_address" />
+                            <entry key="sourceFile" value="C:\Users\Administrator\Desktop\svgicon\iconfont-dizhi.svg" />
                           </map>
                         </option>
                       </PersistentState>
