@@ -1,6 +1,7 @@
 package com.example.administrator.xingyi.register;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -53,9 +54,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        ActivityCollector.addActivity(this);
         ininView();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityCollector.removeActivity(this);
+    }
 
     private void ininView() {
         titleBar = findViewById(R.id.title_register);
@@ -273,9 +280,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         userName.requestFocus();
                     }else {
                         User user;
-                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
                         String date = df.format(new Date());
-                        int telNumber = 0;
+                        int telNumber = 5201314;
                         String addressText = "未知";
                         if (!tel.getText().toString().equals("")){
                             telNumber = Integer.parseInt(tel.getText().toString());
@@ -285,15 +292,16 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         }
                         user = new User(0,userName.getText().toString(),pwd.getText().toString(),telNumber,
                                 addressText,date,0,0,0,0);
+                        userDAO.add(user);
                         editor = pref.edit();
                         editor.putBoolean("auto_login",true);
                         editor.putBoolean("remember_password",true);
-                        editor.putString("account",userName.getText().toString());
+                        editor.putInt("user_id",userDAO.query(userName.getText().toString(),pwd.getText().toString()).get_id());
+                        editor.putString("user_name",userName.getText().toString());
                         editor.putString("password",pwd.getText().toString());
                         editor.apply();
-                        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        ActivityCollector.finishAll();
+                        ActivityCollector.activities.get(0).recreate();
+                        ActivityCollector.activities.get(1).finish();
                         finish();
                     }
                 }
