@@ -13,7 +13,6 @@
         android:layout_height="@dimen/dp_55"
         app:icon_left="@drawable/ic_back"
         app:icon_right="@drawable/ic_edit"
-        app:size_right="17sp"
         app:size_title="20sp"
         app:color_title="@color/black"
         app:title="个人信息" />

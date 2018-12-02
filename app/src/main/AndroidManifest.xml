@@ -19,7 +19,8 @@
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".more.advice.AdviceActivity" />
         <activity android:name=".register.RegisterActivity" />
-        <activity android:name=".more.person.PersonActivity"></activity>
+        <activity android:name=".more.person.PersonActivity" />
+        <activity android:name=".more.person.EditPersonActivity"></activity>
     </application>
 
 </manifest>

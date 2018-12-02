@@ -32,7 +32,8 @@ public class MoreFragment extends Fragment {
     private TextView userName;
     private SharedPreferences pref;
     private String account;
-    //private PeopleMoreRecyclerView peopleMoreRecyclerView;
+    private Boolean logining;
+    private Boolean autuLogin;
 
     @Nullable
     @Override
@@ -43,25 +44,28 @@ public class MoreFragment extends Fragment {
         touxiang = view.findViewById(R.id.person_round_img);
         userName = view.findViewById(R.id.tv_more_username);
         pref = PreferenceManager.getDefaultSharedPreferences(view.getContext());
-        //peopleMoreRecyclerView = new PeopleMoreRecyclerView(view,getContext());
         moreRecyclerView.setLayoutManager();
-        //peopleMoreRecyclerView.setLayoutManager();
         account = pref.getString("user_name","");
-        if (account.equals("")){
-            personRelativeLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(view.getContext(), LoginActivity.class);
-                    startActivity(intent);
-                }
-            });
-        }else {
+        logining = pref.getBoolean("logining",false);
+        autuLogin = pref.getBoolean("auto_login",false);
+        if (autuLogin){
+            logining = true;
+        }
+        if (logining){
             touxiang.setImageResource(R.drawable.touxiang);
             userName.setText(account);
             personRelativeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(view.getContext(), PersonActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }else {
+            personRelativeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), LoginActivity.class);
                     startActivity(intent);
                 }
             });

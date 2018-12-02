@@ -1,5 +1,7 @@
 package com.example.administrator.xingyi;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
@@ -21,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private MenuItem menuItem;
     private BottomNavigationView bottomNavigationView;
     private MyDatabaseHelper myDatabaseHelper;
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +99,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         ActivityCollector.removeActivity(this);
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = pref.edit();
+        editor.putBoolean("logining",false);
+        editor.apply();
     }
 
     private void setupViewPager(ViewPager viewPager) {

@@ -1,6 +1,8 @@
 package com.example.administrator.xingyi.more.person;
 
-import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import com.example.administrator.xingyi.ActivityCollector;
 import com.example.administrator.xingyi.R;
 import com.example.administrator.xingyi.dao.UserDAO;
+import com.example.administrator.xingyi.login.LoginActivity;
 import com.example.administrator.xingyi.model.User;
 import com.example.administrator.xingyi.more.RoundImageView;
 import com.hjq.bar.OnTitleBarListener;
@@ -28,6 +31,9 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
     private RelativeLayout rlQrCode;
     private RelativeLayout rlLogOut;
     private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
+    private AlertDialog alert ;
+    private AlertDialog.Builder builder ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +79,8 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
 
             @Override
             public void onRightClick(View v) {
-
+                Intent intent = new Intent(PersonActivity.this,EditPersonActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -92,6 +99,27 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.rl_person_qrcode:
                 break;
             case R.id.rl_person_logout:
+                builder = new AlertDialog.Builder(this);
+                alert = builder.setTitle("你确定退出登录？")
+                        .setPositiveButton("确定退出", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Intent intent = new Intent(PersonActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                                editor = pref.edit();
+                                editor.putBoolean("logining",false);
+                                editor.apply();
+                                ActivityCollector.activities.get(0).recreate();
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        }).create();
+                alert.show();
                 break;
             default:
                 break;

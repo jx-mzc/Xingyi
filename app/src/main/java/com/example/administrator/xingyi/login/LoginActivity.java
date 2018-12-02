@@ -88,9 +88,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             //创建一个意图
             Intent intent=new Intent(LoginActivity.this,MainActivity.class);
             startActivity(intent);
+            editor = pref.edit();
+            editor.putBoolean("logining",true);
+            editor.apply();
             finish();
         }else if (isRemember){
-            String account = pref.getString("account","");
+            String account = pref.getString("user_name","");
             String password = pref.getString("password","");
             accountEdit.setText(account);
             passwordEdit.setText(password);
@@ -245,6 +248,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             editor.putBoolean("remember_password",true);
                             editor.putString("user_name",account);
                             editor.putString("password",password);
+                            editor.putBoolean("logining",true);
                             if (autoLogin.isChecked()){
                                 editor.putBoolean("auto_login",true);
                             }else {
@@ -254,9 +258,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             editor.clear();
                         }
                         editor.apply();
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                            ActivityCollector.activities.get(0).recreate();
+                            finish();
                         }
                         else {
                             Toast.makeText(LoginActivity.this,"密码错误！",Toast.LENGTH_SHORT).show();
