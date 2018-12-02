@@ -1,8 +1,5 @@
 package com.example.administrator.xingyi.register;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -16,10 +13,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.administrator.xingyi.ActivityCollector;
-import com.example.administrator.xingyi.MainActivity;
 import com.example.administrator.xingyi.R;
 import com.example.administrator.xingyi.dao.UserDAO;
-import com.example.administrator.xingyi.login.LoginActivity;
 import com.example.administrator.xingyi.model.User;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
@@ -299,6 +294,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         editor.putInt("user_id",userDAO.query(userName.getText().toString(),pwd.getText().toString()).get_id());
                         editor.putString("user_name",userName.getText().toString());
                         editor.putString("password",pwd.getText().toString());
+                        editor.putBoolean("logining",true);
                         editor.apply();
                         ActivityCollector.activities.get(0).recreate();
                         ActivityCollector.activities.get(1).finish();
