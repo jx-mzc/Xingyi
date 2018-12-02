@@ -241,8 +241,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         if (user != null){
                         editor = pref.edit();
                         if (rememberPassword.isChecked()){
+                            editor.putInt("user_id",user.get_id());
                             editor.putBoolean("remember_password",true);
-                            editor.putString("account",account);
+                            editor.putString("user_name",account);
                             editor.putString("password",password);
                             if (autoLogin.isChecked()){
                                 editor.putBoolean("auto_login",true);
