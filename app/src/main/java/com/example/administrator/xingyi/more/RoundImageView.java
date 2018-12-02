@@ -17,6 +17,7 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -31,108 +32,58 @@ import com.example.administrator.xingyi.R;
  */
 public class RoundImageView extends AppCompatImageView {
 
-    private Paint mPaint;//设置画笔
-    private Bitmap mBitmap;//获取图片资源
-    private int width, height;//获取控件宽高
+    //画笔
+    private Paint mPaint;
+    //圆形图片的半径
+    private int mRadius;
+    //图片的宿放比例
+    private float mScale;
 
     public RoundImageView(Context context) {
-        this(context,null);
+        super(context);
     }
 
-    public RoundImageView(Context context, AttributeSet attrs) {
-        this(context, attrs,0);
+    public RoundImageView(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
     }
 
-    public RoundImageView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RoundImageView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        mPaint = new Paint();
-    }
-    public Bitmap getBitmap() {
-        return mBitmap;
-    }
-
-    public void setBitmap(Bitmap bitmap) {
-        this.mBitmap = bitmap;
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        //获取控件宽高
-        width = View.getDefaultSize(getMeasuredWidth(), widthMeasureSpec);
-        height = View.getDefaultSize(getMeasuredHeight(), heightMeasureSpec);
+        //由于是圆形，宽高应保持一致
+        int size = Math.min(getMeasuredWidth(), getMeasuredHeight());
+        mRadius = size / 2;
+        setMeasuredDimension(size, size);
     }
 
     @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
 
+        mPaint = new Paint();
+
         Drawable drawable = getDrawable();
-        Bitmap bitmap;
-        if (drawable != null) {
-            if (mBitmap != null) {
-                bitmap = mBitmap;
-            } else {
-                bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.touxiang);
-            }
-            //设置图片缩放比例
+
+        if (null != drawable) {
+            Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+
+            //初始化BitmapShader，传入bitmap对象
+            BitmapShader bitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+            //计算缩放比例
+            mScale = (mRadius * 2.0f) / Math.min(bitmap.getHeight(), bitmap.getWidth());
+
             Matrix matrix = new Matrix();
-            if (width > height) {
-                matrix.setScale((float) (width) / bitmap.getWidth(), (float) (width) / bitmap.getWidth());
-            } else {
-                matrix.setScale((float) (height) / bitmap.getHeight(), (float) (height) / bitmap.getHeight());
-            }
-            bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-            //将图片设置为圆形
-            bitmap = toRoundBitmap(bitmap);
-            //绘制图片
-            canvas.drawBitmap(bitmap, 0, 0, mPaint);
-        }
-        else{
-                super.onDraw(canvas);
-            }
-    }
-    public Bitmap toRoundBitmap(Bitmap bitmap) {
-        int width = bitmap.getWidth();
-        int height = bitmap.getHeight();
-        float roundPx;
-        float left, top, right, bottom, dst_left, dst_top, dst_right, dst_bottom;
-        if (width <= height) {
-            roundPx = width / 2;
-            top = 0;
-            bottom = width;
-            left = 0;
-            right = width;
-            height = width;
-            dst_left = 0;
-            dst_top = 0;
-            dst_right = width;
-            dst_bottom = width;
+            matrix.setScale(mScale, mScale);
+            bitmapShader.setLocalMatrix(matrix);
+            mPaint.setShader(bitmapShader);
+            //画圆形，指定好坐标，半径，画笔
+            canvas.drawCircle(mRadius, mRadius, mRadius, mPaint);
         } else {
-            roundPx = height / 2;
-            float clip = (width - height) / 2;
-            left = clip;
-            right = width - clip;
-            top = 0;
-            bottom = height;
-            width = height;
-            dst_left = 0;
-            dst_top = 0;
-            dst_right = height;
-            dst_bottom = height;
+            super.onDraw(canvas);
         }
-        Bitmap output = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(output);
-        final Rect rect = new Rect(0, 0, width,height);
-        final Paint paint = new Paint();
-        final Rect src = new Rect((int) left, (int) top, (int) right, (int) bottom);
-        final Rect dst = new Rect((int) dst_left, (int) dst_top, (int) dst_right, (int) dst_bottom);
-        final RectF rectF = new RectF(dst_left, dst_top, dst_right, dst_bottom);
-        paint.setAntiAlias(true);
-        canvas.drawARGB(0, 0, 0, 0);
-        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        canvas.drawBitmap(bitmap, src, dst, paint);
-        return output;
     }
 }
