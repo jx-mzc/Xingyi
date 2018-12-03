@@ -104,6 +104,15 @@ public class MainActivity extends AppCompatActivity {
         editor.putBoolean("logining",false);
         editor.apply();
     }
+//
+//    @Override
+//    protected void onRestart() {
+//        super.onRestart();
+//        pref = PreferenceManager.getDefaultSharedPreferences(this);
+//        editor = pref.edit();
+//        editor.putBoolean("logining",true);
+//        editor.apply();
+//    }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());

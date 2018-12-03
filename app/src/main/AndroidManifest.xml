@@ -16,11 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login.LoginActivity" />
+        <activity android:name=".login.LoginActivity"/>
         <activity android:name=".more.advice.AdviceActivity" />
         <activity android:name=".register.RegisterActivity" />
         <activity android:name=".more.person.PersonActivity" />
-        <activity android:name=".more.person.EditPersonActivity"></activity>
+        <activity android:name=".more.person.EditPersonActivity" />
     </application>
 
 </manifest>

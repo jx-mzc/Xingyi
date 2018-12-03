@@ -40,7 +40,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private ImageView deleteAccount;
     private ImageView deletePwd;
     private CheckBox rememberPassword;
-    private CheckBox autoLogin;
     private Button loginBut;
     private TextView register;
     private TextView forgetPwd;
@@ -73,7 +72,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         deleteAccount = findViewById(R.id.iv_delete_username);
         deletePwd = findViewById(R.id.iv_delete_pwd);
         rememberPassword = findViewById(R.id.checkBox_password);
-        autoLogin = findViewById(R.id.checkBox_login);
         loginBut = findViewById(R.id.btn_login);
         register = findViewById(R.id.tv_register);
         forgetPwd = findViewById(R.id.tv_forget_pwd);
@@ -84,7 +82,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //实现自动登录功能
         isAutoLogin = pref.getBoolean("auto_login",false);
         if (isAutoLogin){
-            autoLogin.setChecked(true);
             //创建一个意图
             Intent intent=new Intent(LoginActivity.this,MainActivity.class);
             startActivity(intent);
@@ -118,22 +115,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             }
         });
-        autoLogin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b){
-                        rememberPassword.setChecked(true);
-                }
-            }
-        });
-        rememberPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (!b){
-                    autoLogin.setChecked(false);
-                }
-            }
-        });
+
         hideOrShowImage.setOnClickListener(this);
         loginBut.setOnClickListener(this);
         register.setOnClickListener(this);
@@ -249,17 +231,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             editor.putString("user_name",account);
                             editor.putString("password",password);
                             editor.putBoolean("logining",true);
-                            if (autoLogin.isChecked()){
-                                editor.putBoolean("auto_login",true);
-                            }else {
-                                editor.putBoolean("auto_login",false);
-                            }
+                            editor.putBoolean("auto_login",true);
                         }else {
                             editor.clear();
                         }
                         editor.apply();
-                            ActivityCollector.activities.get(0).recreate();
-                            finish();
+                        ActivityCollector.activities.get(0).recreate();
+                        finish();
                         }
                         else {
                             Toast.makeText(LoginActivity.this,"密码错误！",Toast.LENGTH_SHORT).show();

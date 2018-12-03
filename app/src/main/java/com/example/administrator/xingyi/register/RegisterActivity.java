@@ -1,5 +1,6 @@
 package com.example.administrator.xingyi.register;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.administrator.xingyi.ActivityCollector;
+import com.example.administrator.xingyi.MainActivity;
 import com.example.administrator.xingyi.R;
 import com.example.administrator.xingyi.dao.UserDAO;
 import com.example.administrator.xingyi.model.User;
@@ -296,6 +298,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         editor.putString("password",pwd.getText().toString());
                         editor.putBoolean("logining",true);
                         editor.apply();
+//                        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+//                        startActivity(intent);
                         ActivityCollector.activities.get(0).recreate();
                         ActivityCollector.activities.get(1).finish();
                         finish();

@@ -147,16 +147,7 @@
             android:layout_height="wrap_content"
             android:text="记住密码"
             android:textColor="@color/tab_checked" android:checked="false"/>
-        <CheckBox
-            android:id="@+id/checkBox_login"
-            android:padding="@dimen/dp_10"
-            android:textSize="@dimen/text_size_normal"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="自动登录"
-            android:textColor="@color/tab_checked" android:checked="false"/>
+
 
     </LinearLayout>
     <Button

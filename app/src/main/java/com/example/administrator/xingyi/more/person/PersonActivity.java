@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.xingyi.ActivityCollector;
+import com.example.administrator.xingyi.MainActivity;
 import com.example.administrator.xingyi.R;
 import com.example.administrator.xingyi.dao.UserDAO;
 import com.example.administrator.xingyi.login.LoginActivity;
@@ -104,10 +105,9 @@ public class PersonActivity extends AppCompatActivity implements View.OnClickLis
                         .setPositiveButton("确定退出", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                Intent intent = new Intent(PersonActivity.this, LoginActivity.class);
-                                startActivity(intent);
                                 editor = pref.edit();
                                 editor.putBoolean("logining",false);
+                                editor.putBoolean("auto_login",false);
                                 editor.apply();
                                 ActivityCollector.activities.get(0).recreate();
                                 finish();
