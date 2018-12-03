@@ -15,21 +15,17 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@id/title_exchange"
-        android:background="@drawable/bottom_shadow" />
-    <ScrollView
+        android:background="@drawable/bottom_shadow"
+        android:id="@+id/view" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/exchange_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:layout_below="@id/title_exchange">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-        </RelativeLayout>
-
-
-    </ScrollView>
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/view"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"></android.support.v7.widget.RecyclerView>
 
 
 

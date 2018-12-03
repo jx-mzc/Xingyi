@@ -156,17 +156,17 @@
         android:textSize="@dimen/text_size_normal"/>
 
     <Button
-        android:layout_gravity="center_horizontal"
         android:id="@+id/register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginLeft="@dimen/margin_large"
         android:layout_marginRight="@dimen/margin_large"
+        android:background="@color/tab_checked"
         android:paddingBottom="@dimen/margin_small"
         android:paddingTop="@dimen/margin_small"
         android:text="注册"
-        android:background="@color/tab_checked"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/text_size_normal"/>
+        android:textSize="@dimen/text_size_normal" />
 
 </LinearLayout>
