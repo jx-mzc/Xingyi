@@ -76,7 +76,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         register = findViewById(R.id.tv_register);
         forgetPwd = findViewById(R.id.tv_forget_pwd);
         pref = PreferenceManager.getDefaultSharedPreferences(this);
-
+        String account = pref.getString("user_name","");
+        accountEdit.setText(account);
         //实现记住密码功能
         isRemember = pref.getBoolean("remember_password",false);
         //实现自动登录功能
@@ -90,9 +91,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             editor.apply();
             finish();
         }else if (isRemember){
-            String account = pref.getString("user_name","");
             String password = pref.getString("password","");
-            accountEdit.setText(account);
             passwordEdit.setText(password);
             rememberPassword.setChecked(true);
             accountEdit.setSelection(accountEdit.getText().length());
@@ -225,15 +224,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         User user = userDAO.query(account, password);
                         if (user != null){
                         editor = pref.edit();
-                        if (rememberPassword.isChecked()){
                             editor.putInt("user_id",user.get_id());
-                            editor.putBoolean("remember_password",true);
                             editor.putString("user_name",account);
-                            editor.putString("password",password);
                             editor.putBoolean("logining",true);
+                            editor.putString("password",password);
+                        if (rememberPassword.isChecked()){
+                            editor.putBoolean("remember_password",true);
                             editor.putBoolean("auto_login",true);
                         }else {
-                            editor.clear();
+                            editor.putBoolean("remember_password",false);
+                            editor.putBoolean("auto_login",false);
                         }
                         editor.apply();
                         ActivityCollector.activities.get(0).recreate();
