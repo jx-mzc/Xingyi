@@ -101,7 +101,11 @@ public class MainActivity extends AppCompatActivity {
         ActivityCollector.removeActivity(this);
         pref = PreferenceManager.getDefaultSharedPreferences(this);
         editor = pref.edit();
-        editor.putBoolean("logining",false);
+        if(!pref.getBoolean("remember_password",false) && pref.getString("password","").equals("")){
+            editor.putBoolean("logining",false);
+        }else if (!pref.getBoolean("remember_password",false)){
+            editor.putString("password","");
+        }
         editor.apply();
     }
 //
