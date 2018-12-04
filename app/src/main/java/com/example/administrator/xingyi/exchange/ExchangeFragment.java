@@ -10,9 +10,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.administrator.xingyi.R;
 import com.example.administrator.xingyi.common.RecyclerItemDecoration;
+import com.example.administrator.xingyi.dao.CommodityDAO;
 import com.example.administrator.xingyi.exchange.adapter.CommodityAdapter;
 import com.example.administrator.xingyi.model.Commodity;
 
@@ -22,7 +24,7 @@ import java.util.List;
 /**
  * Project Name:  Xingyi
  * Date:  2018/11/27 0027
- * Author:  Infinity
+ * Author:  ting
  */
 public class ExchangeFragment extends Fragment {
 
@@ -50,18 +52,23 @@ public class ExchangeFragment extends Fragment {
     }
 
     private void initCommodities() {
-        commodities = new ArrayList<>();
-        Commodity commodity = new Commodity("小红帽",R.mipmap.ic_launcher, "又暖又红的小红帽", 5);
-        commodities.add(commodity);
-        commodities.add(commodity);
-        commodities.add(commodity);
-        commodities.add(commodity);
-        commodities.add(commodity);
-        commodities.add(commodity);
-        commodities.add(commodity);
-        commodities.add(commodity);
-        commodities.add(commodity);
-        commodities.add(commodity);
+//        commodities = new ArrayList<>();
+        CommodityDAO commodityDAO = new CommodityDAO(getContext());
+        commodities = commodityDAO.getScrollData(1, (int) commodityDAO.getCount());
+        for (Commodity c : commodities) {
+            c.setImageId(R.mipmap.ic_launcher);
+        }
+//        Commodity commodity = new Commodity("小红帽",R.mipmap.ic_launcher, "又暖又红的小红帽", 5);
+//        commodities.add(commodity);
+//        commodities.add(commodity);
+//        commodities.add(commodity);
+//        commodities.add(commodity);
+//        commodities.add(commodity);
+//        commodities.add(commodity);
+//        commodities.add(commodity);
+//        commodities.add(commodity);
+//        commodities.add(commodity);
+//        commodities.add(commodity);
 
     }
 }

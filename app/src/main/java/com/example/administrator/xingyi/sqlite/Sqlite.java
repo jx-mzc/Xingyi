@@ -5,7 +5,14 @@ package com.example.administrator.xingyi.sqlite;
  * Date:  2018/11/26 0026
  * Author:  Infinity
  */
-public class Sqlite {
+public class Sqlite {//赤、橙、黄、绿、青、蓝、紫
+    private static final String insertCommodities = "INSERT INTO tb_commodity (commodityName, commodityIntroduction, commodityStars) VALUES('小红帽', '暖暖的小红帽', 55),"
+            + "('小橙帽', '暖暖的小橙帽啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊', 55),"
+            + "('小黄帽', '暖暖的小黄帽啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊', 55),"
+            + "('小绿帽', '暖暖的小绿帽', 55),"
+            + "('小青帽', '暖暖的小青帽啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊', 55),"
+            + "('小蓝帽', '暖暖的小蓝帽', 55),"
+            + "('小紫帽', '暖暖的小紫帽啊啊啊啊啊啊啊啊啊啊啊啊啊啊', 55);";
     private static final String[] sqlite = {"CREATE TABLE \"tb_admin\" (\n" +
             "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
             "\"pwd\" TEXT NOT NULL,\n" +
@@ -161,7 +168,8 @@ public class Sqlite {
             "\"stepNum\" INTEGER NOT NULL DEFAULT 0,\n" +
             "\"timeBlock\" TEXT NOT NULL,\n" +
             "CONSTRAINT \"stepNumDetails\" FOREIGN KEY (\"stepnumId\") REFERENCES \"tb_stepNum\" (\"userId\") ON DELETE CASCADE ON UPDATE CASCADE\n" +
-            ");\n"};
+            ");\n",
+            insertCommodities};
 
     public String[] getSqlite() {
         return this.sqlite;

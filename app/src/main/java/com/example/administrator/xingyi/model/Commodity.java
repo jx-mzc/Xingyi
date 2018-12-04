@@ -1,6 +1,8 @@
 package com.example.administrator.xingyi.model;
 
-public class Commodity {//爱心商品实体类
+import java.io.Serializable;
+
+public class Commodity implements Serializable {//爱心商品实体类
     private int _id;//爱心商品ID
     private String commodityName;//爱心商品名
     private int imageId;//爱心商品图片
