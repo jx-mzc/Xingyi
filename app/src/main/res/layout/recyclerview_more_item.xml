@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
+    android:background="@drawable/recyclerview_selector"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -21,9 +22,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/item_more_icon"
-            android:layout_marginStart="13dp"
+            android:layout_marginStart="@dimen/dp_15"
             android:textColor="#000000"
-            android:textSize="15sp"
+            android:textSize="16sp"
             android:text="我的消息"/>
         <ImageView
             android:id="@+id/item_more_right"
@@ -36,9 +37,9 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/dp_0.5"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="52dp"
-        android:background="@drawable/bottom_shadow" />
+        android:layout_marginStart="@dimen/dp_52"
+        android:background="@color/gray_light" />
 
 </RelativeLayout>

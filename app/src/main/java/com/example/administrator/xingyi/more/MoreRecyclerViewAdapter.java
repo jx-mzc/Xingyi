@@ -1,5 +1,7 @@
 package com.example.administrator.xingyi.more;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,7 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.administrator.xingyi.MainActivity;
 import com.example.administrator.xingyi.R;
+import com.example.administrator.xingyi.more.advice.AdviceActivity;
 
 import java.util.List;
 
@@ -21,9 +25,11 @@ import java.util.List;
 public class MoreRecyclerViewAdapter extends RecyclerView.Adapter<MoreRecyclerViewAdapter.ViewHolder> {
 
     private List<More> list;
+    Context context;
 
-    public MoreRecyclerViewAdapter(List<More> list){
+    public MoreRecyclerViewAdapter(List<More> list, Context context){
         this.list = list;
+        this.context = context;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder{
@@ -43,16 +49,33 @@ public class MoreRecyclerViewAdapter extends RecyclerView.Adapter<MoreRecyclerVi
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_more_item,viewGroup, false);
-        final ViewHolder holer = new ViewHolder(view);
-        holer.moreView.setOnClickListener(new View.OnClickListener() {
+        final ViewHolder holder = new ViewHolder(view);
+        holder.moreView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int position = holer.getAdapterPosition();
-                More more = list.get(position);
-                Toast.makeText(view.getContext(),"你点击了："+more.getText(),Toast.LENGTH_SHORT).show();
+                int position = holder.getAdapterPosition();
+                Intent intent = null;
+                switch (position){
+                    case 0:
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        intent = new Intent(context,AdviceActivity.class);
+                        context.startActivity(intent);
+                        break;
+                    case 5:
+                        break;
+                    default:
+                        break;
+                }
             }
         });
-        return holer;
+        return holder;
     }
 
     @Override
@@ -60,6 +83,7 @@ public class MoreRecyclerViewAdapter extends RecyclerView.Adapter<MoreRecyclerVi
         More more = list.get(i);
         viewHolder.leftIcon.setImageResource(more.getLeftIcon());
         viewHolder.text.setText(more.getText());
+
     }
 
     @Override

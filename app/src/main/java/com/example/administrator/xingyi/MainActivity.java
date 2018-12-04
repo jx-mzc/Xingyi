@@ -1,5 +1,7 @@
 package com.example.administrator.xingyi;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
@@ -21,11 +23,14 @@ public class MainActivity extends AppCompatActivity {
     private MenuItem menuItem;
     private BottomNavigationView bottomNavigationView;
     private MyDatabaseHelper myDatabaseHelper;
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActivityCollector.addActivity(this);
         //myDatabaseHelper = new MyDatabaseHelper(MainActivity.this);
        // myDatabaseHelper.getWritableDatabase();
         viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -89,6 +94,29 @@ public class MainActivity extends AppCompatActivity {
 
         setupViewPager(viewPager);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityCollector.removeActivity(this);
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = pref.edit();
+        if(!pref.getBoolean("remember_password",false) && pref.getString("password","").equals("")){
+            editor.putBoolean("logining",false);
+        }else if (!pref.getBoolean("remember_password",false)){
+            editor.putString("password","");
+        }
+        editor.apply();
+    }
+//
+//    @Override
+//    protected void onRestart() {
+//        super.onRestart();
+//        pref = PreferenceManager.getDefaultSharedPreferences(this);
+//        editor = pref.edit();
+//        editor.putBoolean("logining",true);
+//        editor.apply();
+//    }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());

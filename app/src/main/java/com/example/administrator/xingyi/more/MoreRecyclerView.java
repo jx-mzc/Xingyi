@@ -32,7 +32,7 @@ public class MoreRecyclerView {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         //recyclerView.addItemDecoration(android.R.attr.listDivider);
         //初始化适配器
-        MoreRecyclerViewAdapter moreRecyclerViewAdapter = new MoreRecyclerViewAdapter(moreList);
+        MoreRecyclerViewAdapter moreRecyclerViewAdapter = new MoreRecyclerViewAdapter(moreList,context);
         recyclerView.setAdapter(moreRecyclerViewAdapter);
     }
 

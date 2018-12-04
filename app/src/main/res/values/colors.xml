@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="tab_checked">#2D86C6</color>
     <color name="tab_unchecked">#757575</color>
+    <color name="black">#000000</color>
 
 
     <color name="transparent_half">#a0000000</color>
@@ -33,7 +34,7 @@
     <color name="orange_litter">#80aa6136</color>
 
 
-    <color name="white">#fffffa</color>
+    <color name="white">#ffffff</color>
     <color name="gray">#cccccc</color>
 
     <color name="text_avgpre">#ffecc50d</color>
