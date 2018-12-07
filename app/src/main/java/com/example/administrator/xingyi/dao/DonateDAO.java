@@ -133,6 +133,20 @@ public class DonateDAO {
     }
     /**
      * @Author:  Infinity
+     * @Date:  2018/12/4 0004
+     * @Description:  获取某个项目已捐星星数
+     */
+    public long getStarsSum(int projectId){
+        db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
+        Cursor cursor = db.rawQuery("select sum(donateStarsNum) from tb_donate where projectId = ?",new String[]{String.valueOf(projectId)});// 获取捐赠总记录数
+        if (cursor.moveToNext())// 判断Cursor中是否有数据
+        {
+            return cursor.getLong(0);// 返回总记录数
+        }
+        return 0;// 如果没有数据，则返回0
+    }
+    /**
+     * @Author:  Infinity
      * @Date:  2018/11/24 0024
      * @Description:  查询某个项目的捐赠信息，按照捐赠星星数降序排序
      */
