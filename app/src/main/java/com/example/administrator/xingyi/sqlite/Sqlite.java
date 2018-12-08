@@ -7,6 +7,7 @@ package com.example.administrator.xingyi.sqlite;
  */
 public class Sqlite {
     private static final String[] sqlite = {"CREATE TABLE \"tb_admin\" (\n" +
+            "\"name\" TEXT NOT NULL,\n" +
             "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
             "\"pwd\" TEXT NOT NULL,\n" +
             "\"permission\" TEXT NOT NULL DEFAULT unknow\n" +
