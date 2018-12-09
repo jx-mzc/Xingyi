@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.administrator.xingyi.exchange.CommodityDetailActivity;
 import com.example.administrator.xingyi.model.Commodity;
 
 import java.util.ArrayList;
@@ -102,6 +103,7 @@ public class CommodityDAO {
             commodityList.add(new Commodity(
                     cursor.getInt(cursor.getColumnIndex("_id")),
                     cursor.getString(cursor.getColumnIndex("commodityName")),
+                    CommodityDetailActivity.COMMODITY_IMAGES[cursor.getInt(cursor.getColumnIndex("_id"))-1],
                     cursor.getString(cursor.getColumnIndex("commodityIntroduction")),
                     cursor.getInt(cursor.getColumnIndex("commodityStars"))));
         }

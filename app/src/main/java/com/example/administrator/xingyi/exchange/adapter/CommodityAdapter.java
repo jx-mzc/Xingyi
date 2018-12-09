@@ -59,7 +59,7 @@ public class CommodityAdapter extends RecyclerView.Adapter<CommodityAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Commodity commodity = commodities.get(i);
         RequestOptions options = new RequestOptions()
-                .override(500, 300);
+                .override(500, 500);
         Glide.with(mContext).load(commodity.getImageId()).apply(options).into(viewHolder.commodityImage);
         viewHolder.commodityName.setText(commodity.getCommodityName());
         viewHolder.commodityIntroduction.setText(commodity.getCommodityIntroduction());

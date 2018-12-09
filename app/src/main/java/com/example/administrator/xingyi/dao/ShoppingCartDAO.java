@@ -5,7 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.administrator.xingyi.exchange.CommodityDetailActivity;
 import com.example.administrator.xingyi.model.ShoppingCart;
+import com.example.administrator.xingyi.model.ShoppingCartItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,12 +113,38 @@ public class ShoppingCartDAO {
         }
         return shoppingCartList;// 返回集合
     }
+
+    /**
+     * @Author:  ting
+     * @Date:  2018/12/05
+     * @Description:  查询所有购物车信息
+     */
+    public List<ShoppingCartItem> getCommodityScrollData(int start, int count){
+        List<ShoppingCartItem> shoppingCartItemList = new ArrayList<ShoppingCartItem>();// 创建集合对象
+        db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
+        Cursor cursor = db.rawQuery("select s._id as _id, s.userId as userId, s.commodityId as commodityId, s.commodityName as commodityName, num, commodityIntroduction, commodityStars from tb_shoppingCart as s,tb_commodity as c where s.commodityId=c._id  limit ? offset ?",
+                new String[] {String.valueOf(count),String.valueOf(start-1)});
+        while (cursor.moveToNext()){
+            //遍历Cursor对象，并将数据添加到集合中返回
+            shoppingCartItemList.add(new ShoppingCartItem(
+                    cursor.getInt(cursor.getColumnIndex("_id")),
+                    cursor.getInt(cursor.getColumnIndex("userId")),
+                    cursor.getInt(cursor.getColumnIndex("commodityId")),
+                    cursor.getString(cursor.getColumnIndex("commodityName")),
+                    CommodityDetailActivity.COMMODITY_IMAGES[cursor.getColumnIndex("commodityId")-1],
+                    cursor.getString(cursor.getColumnIndex("commodityIntroduction")),
+                    cursor.getInt(cursor.getColumnIndex("commodityStars")),
+                    false,
+                    cursor.getInt(cursor.getColumnIndex("num"))));
+        }
+        return shoppingCartItemList;// 返回集合
+    }
     /**
      * @Author:  Infinity
      * @Date:  2018/11/25 0025
      * @Description:  查询某个用户的所有购物车信息
      */
-    public List<ShoppingCart> getCommodityScrollData(int start, int count,int userId){
+    public List<ShoppingCart> getScrollData(int start, int count,int userId){
         List<ShoppingCart> shoppingCartList = new ArrayList<ShoppingCart>();// 创建集合对象
         db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
         Cursor cursor = db.rawQuery("select * from tb_shoppingCart where userId = ? limit ? offset ?",

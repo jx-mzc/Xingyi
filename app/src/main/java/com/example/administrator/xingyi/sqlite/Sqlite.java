@@ -6,13 +6,13 @@ package com.example.administrator.xingyi.sqlite;
  * Author:  Infinity
  */
 public class Sqlite {//赤、橙、黄、绿、青、蓝、紫
-    private static final String insertCommodities = "INSERT INTO tb_commodity (commodityName, commodityIntroduction, commodityStars) VALUES('小红帽', '暖暖的小红帽', 55),"
-            + "('小橙帽', '暖暖的小橙帽啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊', 55),"
-            + "('小黄帽', '暖暖的小黄帽啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊', 55),"
-            + "('小绿帽', '暖暖的小绿帽', 55),"
-            + "('小青帽', '暖暖的小青帽啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊', 55),"
-            + "('小蓝帽', '暖暖的小蓝帽', 55),"
-            + "('小紫帽', '暖暖的小紫帽啊啊啊啊啊啊啊啊啊啊啊啊啊啊', 55);";
+    private static final String insertCommodities = "INSERT INTO tb_commodity (commodityName, commodityIntroduction, commodityStars) VALUES('小红帽', '可爱的小红帽', 55),"
+            + "('小黑帽', '酷酷的小黑帽', 95),"
+            + "('小蓝帽', '低调的小蓝帽', 45),"
+            + "('小绿帽', '绿绿的小绿帽', 9),"
+            + "('小酒帽', '暖暖的小酒帽', 99),"
+            + "('小咖帽', '别致的小咖帽', 65),"
+            + "('小青帽', '平凡的小青帽', 55);";
     private static final String[] sqlite = {"CREATE TABLE \"tb_admin\" (\n" +
             "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
             "\"pwd\" TEXT NOT NULL,\n" +
@@ -152,6 +152,7 @@ public class Sqlite {//赤、橙、黄、绿、青、蓝、紫
             "\"userId\" INTEGER NOT NULL,\n" +
             "\"commodityId\" INTEGER NOT NULL DEFAULT -1,\n" +
             "\"commodityName\" TEXT NOT NULL DEFAULT 0,\n" +
+            "\"num\" INTEGER NOT NULL DEFAULT 1,\n" +
             "CONSTRAINT \"shoppingCart_user\" FOREIGN KEY (\"userId\") REFERENCES \"tb_user\" (\"_id\") ON DELETE CASCADE ON UPDATE CASCADE,\n" +
             "CONSTRAINT \"shoppingCart_commodity\" FOREIGN KEY (\"commodityId\") REFERENCES \"tb_commodity\" (\"_id\") ON UPDATE CASCADE\n" +
             ");\n" ,

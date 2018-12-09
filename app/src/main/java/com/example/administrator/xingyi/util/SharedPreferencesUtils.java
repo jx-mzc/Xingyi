@@ -8,10 +8,10 @@ import android.content.SharedPreferences;
  */
 
 public class SharedPreferencesUtils {
-    public Context myContext;
-    public String spName;
-    public SharedPreferences sp;
-    public SharedPreferences.Editor editor;
+    private Context myContext;
+    private String spName;
+    private SharedPreferences sp;
+    private SharedPreferences.Editor editor;
     public SharedPreferencesUtils(Context context, String name){
         myContext = context;
         spName = name;

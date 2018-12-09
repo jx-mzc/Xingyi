@@ -22,7 +22,8 @@
         <activity android:name=".more.person.PersonActivity" />
         <activity android:name=".more.person.EditPersonActivity" />
         <activity android:name=".exchange.ShoppingCartActivity" />
-        <activity android:name=".exchange.CommodityDetailActivity"></activity>
+        <activity android:name=".exchange.CommodityDetailActivity" />
+        <activity android:name=".exchange.SettlementActivity"></activity>
     </application>
 
 </manifest>
