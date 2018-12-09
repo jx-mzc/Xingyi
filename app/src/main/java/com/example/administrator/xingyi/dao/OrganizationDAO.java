@@ -36,6 +36,7 @@ public class OrganizationDAO {
         db = myDatabaseHelper.getWritableDatabase();
         values = new ContentValues();
         //开始组装数据
+        values.put("organizationImgRes",organization.getOrganizationImgRes());
         values.put("organizationName",organization.getOrganizationName());
         values.put("organizationIntroduction",organization.getOrganizationIntroduction());
         values.put("sponsorNum",organization.getSponsorNum());
@@ -63,6 +64,7 @@ public class OrganizationDAO {
         db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
         values = new ContentValues();
         //开始组装数据
+        values.put("organizationImgRes",organization.getOrganizationImgRes());
         values.put("organizationName",organization.getOrganizationName());
         values.put("organizationIntroduction",organization.getOrganizationIntroduction());
         values.put("sponsorNum",organization.getSponsorNum());
@@ -81,6 +83,7 @@ public class OrganizationDAO {
             //遍历Cursor对象，并将数据存储到Organization类中返回
             return new Organization(
                     cursor.getInt(cursor.getColumnIndex("_id")),
+                    cursor.getInt(cursor.getColumnIndex("organizationImgRes")),
                     cursor.getString(cursor.getColumnIndex("organizationName")),
                     cursor.getString(cursor.getColumnIndex("organizationIntroduction")),
                     cursor.getInt(cursor.getColumnIndex("sponsorNum")));
@@ -101,6 +104,7 @@ public class OrganizationDAO {
             //遍历Cursor对象，并将数据添加到集合中返回
             organizationList.add(new Organization(
                     cursor.getInt(cursor.getColumnIndex("_id")),
+                    cursor.getInt(cursor.getColumnIndex("organizationImgRes")),
                     cursor.getString(cursor.getColumnIndex("organizationName")),
                     cursor.getString(cursor.getColumnIndex("organizationIntroduction")),
                     cursor.getInt(cursor.getColumnIndex("sponsorNum"))));

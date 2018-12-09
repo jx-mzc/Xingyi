@@ -37,6 +37,7 @@ public class UserDAO {
         db = myDatabaseHelper.getWritableDatabase();
         values = new ContentValues();
         //开始组装数据
+        values.put("userImgRes",user.getUserImgRes());
         values.put("name",user.getName());
         values.put("pwd",user.getPwd());
         values.put("tel",user.getTel());
@@ -70,6 +71,7 @@ public class UserDAO {
         db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
         values = new ContentValues();
         //开始组装数据
+        values.put("userImgRes",user.getUserImgRes());
         values.put("name",user.getName());
         values.put("pwd",user.getPwd());
         values.put("tel",user.getTel());
@@ -94,6 +96,7 @@ public class UserDAO {
             //遍历Cursor对象，并将数据存储到User类中返回
             return new User(
                     cursor.getInt(cursor.getColumnIndex("_id")),
+                    cursor.getInt(cursor.getColumnIndex("userImgRes")),
                     cursor.getString(cursor.getColumnIndex("name")),
                     cursor.getString(cursor.getColumnIndex("pwd")),
                     cursor.getInt(cursor.getColumnIndex("tel")),
@@ -134,6 +137,7 @@ public class UserDAO {
             //遍历Cursor对象，并将数据存储到User类中返回
             return new User(
                     cursor.getInt(cursor.getColumnIndex("_id")),
+                    cursor.getInt(cursor.getColumnIndex("userImgRes")),
                     cursor.getString(cursor.getColumnIndex("name")),
                     cursor.getString(cursor.getColumnIndex("pwd")),
                     cursor.getInt(cursor.getColumnIndex("tel")),
@@ -161,6 +165,7 @@ public class UserDAO {
             //遍历Cursor对象，并将数据添加到集合中返回
             userList.add(new User(
                     cursor.getInt(cursor.getColumnIndex("_id")),
+                    cursor.getInt(cursor.getColumnIndex("userImgRes")),
                     cursor.getString(cursor.getColumnIndex("name")),
                     cursor.getString(cursor.getColumnIndex("pwd")),
                     cursor.getInt(cursor.getColumnIndex("tel")),

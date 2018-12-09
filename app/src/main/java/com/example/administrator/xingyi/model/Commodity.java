@@ -2,6 +2,7 @@ package com.example.administrator.xingyi.model;
 
 public class Commodity {//爱心商品实体类
     private int _id;//爱心商品ID
+    private int commodityImgRes;//爱心商品图片
     private String commodityName;//爱心商品名
     private String commodityIntroduction;//爱心商品描述
     private int commodityStars;//兑换爱心商品所需积分
@@ -10,8 +11,9 @@ public class Commodity {//爱心商品实体类
         super();
     }
 
-    public Commodity(int _id, String commodityName, String commodityIntroduction, int commodityStars) {
+    public Commodity(int _id, int commodityImgRes, String commodityName, String commodityIntroduction, int commodityStars) {
         this._id = _id;
+        this.commodityImgRes = commodityImgRes;
         this.commodityName = commodityName;
         this.commodityIntroduction = commodityIntroduction;
         this.commodityStars = commodityStars;
@@ -23,6 +25,14 @@ public class Commodity {//爱心商品实体类
 
     public void set_id(int _id) {
         this._id = _id;
+    }
+
+    public int getCommodityImgRes() {
+        return commodityImgRes;
+    }
+
+    public void setCommodityImgRes(int commodityImgRes) {
+        this.commodityImgRes = commodityImgRes;
     }
 
     public String getCommodityName() {
