@@ -14,6 +14,7 @@ public class Sqlite {
             ");\n" ,
             "CREATE TABLE \"tb_user\" (\n" +
             "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
+            "\"userImgRes\" INTEGER NOT NULL,\n" +
             "\"name\" TEXT NOT NULL,\n" +
             "\"pwd\" TEXT NOT NULL,\n" +
             "\"tel\" INTEGER(11) NOT NULL DEFAULT 00000000000,\n" +
