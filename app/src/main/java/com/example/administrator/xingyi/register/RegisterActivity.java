@@ -279,7 +279,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         User user;
                         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
                         String date = df.format(new Date());
-                        int telNumber = 5201314;
+                        long telNumber = 5201314;
                         String addressText = "未知";
                         if (!tel.getText().toString().equals("")){
                             telNumber = Integer.parseInt(tel.getText().toString());

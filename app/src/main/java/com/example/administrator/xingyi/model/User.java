@@ -7,7 +7,7 @@ public class User {//用户实体类
     private int userImgRes;//用户头像
     private String name;//用户名
     private String pwd;//用户密码
-    private int tel;//手机号
+    private long tel;//手机号
     private String address;//地址
     private String registrationDate;//注册日期
     private int donableStars;//可捐星星
@@ -19,7 +19,7 @@ public class User {//用户实体类
         super();
     }
 
-    public User(int _id, int userImgRes,String name, String pwd, int tel, String address, String registrationDate, int donableStars,
+    public User(int _id, int userImgRes,String name, String pwd, long tel, String address, String registrationDate, int donableStars,
                 int donatedStars, int exchangeableStars, int exchangedStars)
     {
         this._id = _id;
@@ -67,11 +67,11 @@ public class User {//用户实体类
         this.pwd = pwd;
     }
 
-    public int getTel() {
+    public long getTel() {
         return tel;
     }
 
-    public void setTel(int tel) {
+    public void setTel(long tel) {
         this.tel = tel;
     }
 
