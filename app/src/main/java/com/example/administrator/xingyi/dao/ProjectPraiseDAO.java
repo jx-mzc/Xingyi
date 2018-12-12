@@ -89,6 +89,25 @@ public class ProjectPraiseDAO {
     }
     /**
      * @Author:  Infinity
+     * @Date:  2018/12/9 0009
+     * @Description:  通过用户ID和项目ID查询单条点赞记录
+     */
+    public ProjectPraise query(int userId,int projectId){
+        db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
+        Cursor cursor = db.query("tb_projectPraise",null,"userId = ? and projectId = ?",
+                new String[]{String.valueOf(userId),String.valueOf(projectId)}, null,null,null);
+        if (cursor.moveToNext()){
+            //遍历Cursor对象，并将数据存储到ProjectPraise类中返回
+            return new ProjectPraise(
+                    cursor.getInt(cursor.getColumnIndex("_id")),
+                    cursor.getInt(cursor.getColumnIndex("userId")),
+                    cursor.getInt(cursor.getColumnIndex("projectId")),
+                    cursor.getString(cursor.getColumnIndex("praiseTime")));
+        }
+        return null;// 如果没有信息，则返回null
+    }
+    /**
+     * @Author:  Infinity
      * @Date:  2018/11/25 0025
      * @Description:  查询所有项目点赞信息
      */

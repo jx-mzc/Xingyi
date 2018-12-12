@@ -91,10 +91,30 @@ public class DonateDAO {
     }
     /**
      * @Author:  Infinity
+     * @Date:  2018/12/11 0011
+     * @Description:  通过用户ID和项目ID查询捐赠记录
+     */
+    public Donate query(int userId,int projectId){
+        db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
+        Cursor cursor = db.query("tb_donate",null,"userId = ? and projectId = ?",
+                new String[]{String.valueOf(userId),String.valueOf(projectId)}, null,null,null);
+        if (cursor.moveToNext()){
+            //遍历Cursor对象，并将数据存储到Donate类中返回
+            return new Donate(
+                    cursor.getInt(cursor.getColumnIndex("_id")),
+                    cursor.getInt(cursor.getColumnIndex("projectId")),
+                    cursor.getInt(cursor.getColumnIndex("userId")),
+                    cursor.getInt(cursor.getColumnIndex("donateStarsNum")),
+                    cursor.getString(cursor.getColumnIndex("donateTime")));
+        }
+        return null;// 如果没有信息，则返回null
+    }
+    /**
+     * @Author:  Infinity
      * @Date:  2018/11/24 0024
      * @Description:  查询所有捐赠信息
      */
-    public List<Donate> getScrollData(int start, int count){
+    public List<Donate> getScrollData(long start, long count){
         List<Donate> donateList = new ArrayList<Donate>();// 创建集合对象
         db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
         Cursor cursor = db.rawQuery("select * from tb_donate limit ? offset ?",
@@ -115,7 +135,7 @@ public class DonateDAO {
      * @Date:  2018/11/24 0024
      * @Description:  查询某个用户的捐赠信息
      */
-    public List<Donate> getProjectScrollData(int start, int count,int userId){
+    public List<Donate> getProjectScrollData(long start, long count,int userId){
         List<Donate> donateList = new ArrayList<Donate>();// 创建集合对象
         db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
         Cursor cursor = db.rawQuery("select * from tb_donate where userId = ? limit ? offset ?",
@@ -150,7 +170,7 @@ public class DonateDAO {
      * @Date:  2018/11/24 0024
      * @Description:  查询某个项目的捐赠信息，按照捐赠星星数降序排序
      */
-    public List<Donate> getUserScrollData(int start, int count,int projectId){
+    public List<Donate> getUserScrollData(long start, long count,int projectId){
         List<Donate> donateList = new ArrayList<Donate>();// 创建集合对象
         db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
         Cursor cursor = db.rawQuery("select * from tb_donate where userId = ? order by donateStarsNum desc limit ? offset ?",
