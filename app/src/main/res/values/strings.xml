@@ -1,40 +1,10 @@
 <resources>
     <string name="app_name">星益</string>
     <string name="title_back">返回</string>
-    <string name="svg_project">&#xe64c;</string>
-    <string name="svg_stepNum">&#xe639;</string>
-    <string name="svg_getStars">&#xe618;</string>
-    <string name="svg_fankui">&#xe649;</string>
-    <string name="svg_news">&#xe62d;</string>
-    <string name="svg_exchange">&#xe725;</string>
-    <string name="svg_colcks">&#xe617;</string>
-    <string name="svg_up">&#xe615;</string>
-    <string name="svg_down">&#xe612;</string>
-    <string name="svg_add">&#xe60b;</string>
-    <string name="svg_message">&#xe63d;</string>
-    <string name="svg_heart">&#xe636;</string>
-    <string name="svg_stars">&#xe61d;</string>
-    <string name="svg_address">&#xe614;</string>
-    <string name="svg_fasong">&#xe611;</string>
-    <string name="svg_share">&#xe60c;</string>
-    <string name="svg_edit">&#xe613;</string>
-    <string name="svg_delete">&#xe607;</string>
-    <string name="svg_alipay">&#xe608;</string>
-    <string name="svg_qq">&#xe60e;</string>
-    <string name="svg_scanning">&#xe65e;</string>
-    <string name="svg_camera">&#xe602;</string>
-    <string name="svg_weibo">&#xe640;</string>
-    <string name="svg_wechat">&#xe63f;</string>
-    <string name="svg_search">&#xe628;</string>
-    <string name="svg_qrcode">&#xe690;</string>
-    <string name="svg_person">&#xe620;</string>
-    <string name="svg_more">&#xe61f;</string>
-    <string name="svg_praise">&#xe610;</string>
-    <string name="svg_home">&#xe60f;</string>
-    <string name="svg_back">&#xe606;</string>
-    <string name="svg_xiaoxi">&#xe604;</string>
-    <string name="svg_filter">&#xe60a;</string>
-    <string name="svg_check">&#xe605;</string>
-    <string name="svg_shoppingCart">&#xe603;</string>
-    <string name="svg_setting">&#xe642;</string>
+    <string name="company_introduction">阿拉善SEE生态协会成立于2004年6月5日，是中国首家以社会责任为己任，以企业家为主体，以保护生态为目标的社会团体。
+        发展至今，阿拉善SEE成立了20个地方项目中心，企业家会员超过900名；直接或间接支持了450多家中国民间环保公益机构或个人的工作。
+        未来，阿拉善SEE将进一步带动和整合企业家及社会资源投入，号召公众的广泛支持和参与，充分发挥社会化保护平台价值，共同守护碧水蓝天。
+    </string>
+    <string name="organization_introduction">四叶草爱心公益组织成立于2012年2月22日，由在校高中生与大学生参与并支持的爱心公益团体，帮助对象为山区贫困学生及留守儿童，为他们的学习与生活伸出援手。
+    </string>
 </resources>

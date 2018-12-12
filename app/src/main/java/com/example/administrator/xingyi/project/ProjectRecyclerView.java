@@ -32,9 +32,7 @@ public class ProjectRecyclerView {
         //设置RecyclerView管理器
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setNestedScrollingEnabled(false
-
-        );
+        recyclerView.setNestedScrollingEnabled(false);
         //recyclerView.addItemDecoration(android.R.attr.listDivider);
         //初始化适配器
         ProjectRecyclerViewAdapter projectRecyclerViewAdapter = new ProjectRecyclerViewAdapter(projectViewList,context);
@@ -54,7 +52,7 @@ public class ProjectRecyclerView {
 //        projectList = projectDAO.getScrollData(1,10);
 //        for (Project project:projectList) {
 //            projectId = donateDAO.query(project.get_id()).getProjectId();
-//            projectImg = R.drawable.timg;
+//            projectImg = project.getProjectImgRes();
 //            projectTitle = project.getProjectName();
 //            targetStarsCount = project.getProjectNeed();
 //            currentStarsCount = donateDAO.getStarsSum(projectId);
