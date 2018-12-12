@@ -77,7 +77,7 @@ public class ProgressView extends View {
         overText = ta.getString(R.styleable.ProgressView_overText);
         nearOverText = ta.getString(R.styleable.ProgressView_nearOverText);
         textSize = ta.getDimension(R.styleable.ProgressView_textSize,sp2px(16));
-        isNeedAnim = ta.getBoolean(R.styleable.ProgressView_isNeedAnim,true);
+        isNeedAnim = ta.getBoolean(R.styleable.ProgressView_isNeedAnim,false);
         ta.recycle();
     }
     private void initPaint() {
