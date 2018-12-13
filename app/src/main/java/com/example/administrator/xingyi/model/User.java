@@ -5,9 +5,10 @@ import java.util.Date;
 
 public class User implements Serializable {//用户实体类
     private int _id;//用户ID
+    private int userImgRes;//用户头像
     private String name;//用户名
     private String pwd;//用户密码
-    private int tel;//手机号
+    private long tel;//手机号
     private String address;//地址
     private String registrationDate;//注册日期
     private int donableStars;//可捐星星
@@ -19,10 +20,11 @@ public class User implements Serializable {//用户实体类
         super();
     }
 
-    public User(int _id, String name, String pwd, int tel, String address, String registrationDate, int donableStars,
+    public User(int _id, int userImgRes,String name, String pwd, long tel, String address, String registrationDate, int donableStars,
                 int donatedStars, int exchangeableStars, int exchangedStars)
     {
         this._id = _id;
+        this.userImgRes = userImgRes;
         this.name = name;
         this.pwd = pwd;
         this.tel = tel;
@@ -42,6 +44,14 @@ public class User implements Serializable {//用户实体类
         this._id = _id;
     }
 
+    public int getUserImgRes() {
+        return userImgRes;
+    }
+
+    public void setUserImgRes(int userImgRes) {
+        this.userImgRes = userImgRes;
+    }
+
     public String getName() {
         return name;
     }
@@ -58,11 +68,11 @@ public class User implements Serializable {//用户实体类
         this.pwd = pwd;
     }
 
-    public int getTel() {
+    public long getTel() {
         return tel;
     }
 
-    public void setTel(int tel) {
+    public void setTel(long tel) {
         this.tel = tel;
     }
 

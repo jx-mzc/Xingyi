@@ -25,6 +25,8 @@ public class ProjectFragment extends Fragment {
 
     private MZBannerView mzBannerView;
     private BannerView bannerView;
+    private ProjectRecyclerView projectRecyclerView;
+
     public ProjectFragment(){
         super();
     }
@@ -47,9 +49,11 @@ public class ProjectFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_project,null);
         mzBannerView = (MZBannerView)view.findViewById(R.id.project_banner);
+        projectRecyclerView = new ProjectRecyclerView(view,getContext());
         bannerView = new BannerView(mzBannerView,getContext());
         bannerView.setBannerView();//利用框架设置轮播图
         mzBannerView.start();//开始轮播
+        projectRecyclerView.setLayoutManager();
         return view;
     }
 }

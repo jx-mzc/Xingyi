@@ -24,6 +24,11 @@
         <activity android:name=".exchange.ShoppingCartActivity" />
         <activity android:name=".exchange.CommodityDetailActivity" />
         <activity android:name=".exchange.SettlementActivity"></activity>
+        <activity android:name=".project.ProjectActivity" />
+        <activity android:name=".project.projectDonateRank.ProjectDonateRankActivity" />
+        <activity android:name=".project.projectSponser.ProjectSponserActivity" />
+        <activity android:name=".project.projectOriginator.ProjectOriginatorActivity" />
+        <activity android:name=".project.projectMessage.ProjectMessageActivity"></activity>
     </application>
 
 </manifest>

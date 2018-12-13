@@ -37,6 +37,7 @@ public class AdminDAO {//管理员类数据访问层对象
         db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
         values = new ContentValues();
         //开始组装数据
+        values.put("name",admin.getName());
         values.put("pwd",admin.getPwd());
         values.put("permission",admin.getPermission());
         db.insert("tb_admin",null,values);
@@ -63,6 +64,7 @@ public class AdminDAO {//管理员类数据访问层对象
         db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
         values = new ContentValues();
         //开始组装数据
+        values.put("name",admin.getName());
         values.put("pwd",admin.getPwd());
         values.put("permission",admin.getPermission());
         db.update("tb_admin",values,"_id = ?",new String[]{String.valueOf(admin.get_id())});
@@ -80,9 +82,43 @@ public class AdminDAO {//管理员类数据访问层对象
             //遍历Cursor对象，并将数据存储到Admin类中返回
             return new Admin(
                     cursor.getInt(cursor.getColumnIndex("_id")),
+                    cursor.getString(cursor.getColumnIndex("name")),
                     cursor.getString(cursor.getColumnIndex("pwd")),
                     cursor.getString(cursor.getColumnIndex("permission")));
             }
+        return null;// 如果没有信息，则返回null
+    }
+    /**
+     * @Author:  Infinity
+     * @Date:  2018/12/7 0007
+     * @Description:  通过管理员名查找信息是否存在
+     */
+    public Boolean query(String adminName){
+        db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
+        Cursor cursor = db.query("tb_admin",null,"name = ? ",new String[]{adminName},
+                null,null,null);
+        if (cursor.moveToNext()){
+            return true;
+        }
+        return false;
+    }
+    /**
+     * @Author:  Infinity
+     * @Date:  2018/12/7 0007
+     * @Description:  通过用户名和密码查询单条管理员信息
+     */
+    public Admin query(String adminName,String pwd){
+        db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
+        Cursor cursor = db.query("tb_admin",null,"name = ? and pwd = ?",new String[]{adminName, pwd},
+                null,null,null);
+        if (cursor.moveToNext()){
+            //遍历Cursor对象，并将数据存储到Admin类中返回
+            return new Admin(
+                    cursor.getInt(cursor.getColumnIndex("_id")),
+                    cursor.getString(cursor.getColumnIndex("name")),
+                    cursor.getString(cursor.getColumnIndex("pwd")),
+                    cursor.getString(cursor.getColumnIndex("permission")));
+        }
         return null;// 如果没有信息，则返回null
     }
     /**
@@ -99,6 +135,7 @@ public class AdminDAO {//管理员类数据访问层对象
             //遍历Cursor对象，并将数据添加到集合中返回
             adminList.add(new Admin(
                     cursor.getInt(cursor.getColumnIndex("_id")),
+                    cursor.getString(cursor.getColumnIndex("name")),
                     cursor.getString(cursor.getColumnIndex("pwd")),
                     cursor.getString(cursor.getColumnIndex("permission"))));
         }

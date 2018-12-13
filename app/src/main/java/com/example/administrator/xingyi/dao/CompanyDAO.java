@@ -36,6 +36,7 @@ public class CompanyDAO {
         db = myDatabaseHelper.getWritableDatabase();
         values = new ContentValues();
         //开始组装数据
+        values.put("companyImgRes",company.getCompanyImgRes());
         values.put("companyName",company.getCompanyName());
         values.put("companyIntroduction",company.getCompanyIntroduction());
         values.put("fundNum",company.getFundNum());
@@ -63,6 +64,7 @@ public class CompanyDAO {
         db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
         values = new ContentValues();
         //开始组装数据
+        values.put("companyImgRes",company.getCompanyImgRes());
         values.put("companyName",company.getCompanyName());
         values.put("companyIntroduction",company.getCompanyIntroduction());
         values.put("fundNum",company.getFundNum());
@@ -81,6 +83,7 @@ public class CompanyDAO {
             //遍历Cursor对象，并将数据存储到Company类中返回
             return new Company(
                     cursor.getInt(cursor.getColumnIndex("_id")),
+                    cursor.getInt(cursor.getColumnIndex("companyImgRes")),
                     cursor.getString(cursor.getColumnIndex("companyName")),
                     cursor.getString(cursor.getColumnIndex("companyIntroduction")),
                     cursor.getInt(cursor.getColumnIndex("fundNum")));
@@ -101,6 +104,7 @@ public class CompanyDAO {
             //遍历Cursor对象，并将数据添加到集合中返回
             companyList.add(new Company(
                     cursor.getInt(cursor.getColumnIndex("_id")),
+                    cursor.getInt(cursor.getColumnIndex("companyImgRes")),
                     cursor.getString(cursor.getColumnIndex("companyName")),
                     cursor.getString(cursor.getColumnIndex("companyIntroduction")),
                     cursor.getInt(cursor.getColumnIndex("fundNum"))));

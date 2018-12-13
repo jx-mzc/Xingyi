@@ -14,12 +14,14 @@ public class Sqlite {//赤、橙、黄、绿、青、蓝、紫
             + "('小咖帽', '别致的小咖帽', 65),"
             + "('小青帽', '平凡的小青帽', 55);";
     private static final String[] sqlite = {"CREATE TABLE \"tb_admin\" (\n" +
+            "\"name\" TEXT NOT NULL,\n" +
             "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
             "\"pwd\" TEXT NOT NULL,\n" +
             "\"permission\" TEXT NOT NULL DEFAULT unknow\n" +
             ");\n" ,
             "CREATE TABLE \"tb_user\" (\n" +
             "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
+            "\"userImgRes\" INTEGER NOT NULL,\n" +
             "\"name\" TEXT NOT NULL,\n" +
             "\"pwd\" TEXT NOT NULL,\n" +
             "\"tel\" INTEGER(11) NOT NULL DEFAULT 00000000000,\n" +
@@ -39,12 +41,14 @@ public class Sqlite {//赤、橙、黄、绿、青、蓝、紫
             ");\n" ,
             "CREATE TABLE \"tb_commodity\" (\n" +
             "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
+            "\"commodityImgRes\" INTEGER NOT NULL,\n" +
             "\"commodityName\" TEXT NOT NULL,\n" +
             "\"commodityIntroduction\" TEXT NOT NULL DEFAULT noIntroduction,\n" +
             "\"commodityStars\" INTEGER NOT NULL DEFAULT 0\n" +
             ");\n" ,
             "CREATE TABLE \"tb_company\" (\n" +
             "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
+            "\"companyImgRes\" INTEGER NOT NULL,\n" +
             "\"companyName\" TEXT NOT NULL,\n" +
             "\"companyIntroduction\" TEXT NOT NULL DEFAULT noIntroduction,\n" +
             "\"fundNum\" INTEGER NOT NULL DEFAULT 0\n" +
@@ -52,6 +56,7 @@ public class Sqlite {//赤、橙、黄、绿、青、蓝、紫
             "CREATE TABLE \"tb_project\" (\n" +
             "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
             "\"adminId\" INTEGER NOT NULL DEFAULT -1,\n" +
+            "\"projectImgRes\" INTEGER NOT NULL,\n" +
             "\"projectName\" TEXT NOT NULL,\n" +
             "\"projectIntroduction\" TEXT NOT NULL,\n" +
             "\"projectUse\" TEXT NOT NULL,\n" +
@@ -69,6 +74,7 @@ public class Sqlite {//赤、橙、黄、绿、青、蓝、紫
             ");\n" ,
             "CREATE TABLE \"tb_organization\" (\n" +
             "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
+            "\"organizationImgRes\" INTEGER NOT NULL,\n" +
             "\"organizationName\" TEXT NOT NULL,\n" +
             "\"organizationIntroduction\" TEXT NOT NULL DEFAULT noIntroduction,\n" +
             "\"sponsorNum\" INTEGER NOT NULL DEFAULT 0\n" +

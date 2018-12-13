@@ -3,6 +3,7 @@ package com.example.administrator.xingyi.model;
 public class Project {//公益项目实体类
     private int _id;//公益项目ID
     private int adminId;//管理员ID
+    private int projectImgRes;//公益项目图片
     private String projectName;//公益项目名
     private String projectIntroduction;//公益项目简述
     private String projectUse;//公益项目用途
@@ -19,12 +20,13 @@ public class Project {//公益项目实体类
         super();
     }
 
-    public Project(int _id, int adminId, String projectName, String projectIntroduction, String projectUse,
+    public Project(int _id, int adminId,int projectImgRes, String projectName, String projectIntroduction, String projectUse,
                    int companyId, String projectSponser, int organizationId, String projectOriginator,
                    int projectNeed, int projectHave, int projectMessageNum, int projectPraiseNum)
     {
         this._id = _id;
         this.adminId = adminId;
+        this.projectImgRes = projectImgRes;
         this.projectName = projectName;
         this.projectIntroduction = projectIntroduction;
         this.projectUse = projectUse;
@@ -52,6 +54,14 @@ public class Project {//公益项目实体类
 
     public void setAdminId(int adminId) {
         this.adminId = adminId;
+    }
+
+    public int getProjectImgRes() {
+        return projectImgRes;
+    }
+
+    public void setProjectImgRes(int projectImgRes) {
+        this.projectImgRes = projectImgRes;
     }
 
     public String getProjectName() {

@@ -2,6 +2,7 @@ package com.example.administrator.xingyi.model;
 
 public class Admin {//管理员实体类
     private int _id;//管理员ID
+    private String name;//管理员name
     private String pwd;//管理员密码
     private String permission;//管理员权限
 
@@ -9,8 +10,9 @@ public class Admin {//管理员实体类
         super();
     }
 
-    public Admin(int _id,String pwd,String permission){
+    public Admin(int _id, String name, String pwd, String permission) {
         this._id = _id;
+        this.name = name;
         this.pwd = pwd;
         this.permission = permission;
     }
@@ -21,6 +23,14 @@ public class Admin {//管理员实体类
 
     public void set_id(int _id) {
         this._id = _id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPwd() {

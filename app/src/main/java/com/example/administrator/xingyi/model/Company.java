@@ -2,6 +2,7 @@ package com.example.administrator.xingyi.model;
 
 public class Company {//企业实体类
     private int _id;//企业ID
+    private int companyImgRes;//企业图片
     private String companyName;//企业名称
     private String companyIntroduction;//企业简介
     private int fundNum;//资助项目数量
@@ -10,8 +11,9 @@ public class Company {//企业实体类
         super();
     }
 
-    public Company(int _id, String companyName, String companyIntroduction, int fundNum) {
+    public Company(int _id, int companyImgRes, String companyName, String companyIntroduction, int fundNum) {
         this._id = _id;
+        this.companyImgRes = companyImgRes;
         this.companyName = companyName;
         this.companyIntroduction = companyIntroduction;
         this.fundNum = fundNum;
@@ -23,6 +25,14 @@ public class Company {//企业实体类
 
     public void set_id(int _id) {
         this._id = _id;
+    }
+
+    public int getCompanyImgRes() {
+        return companyImgRes;
+    }
+
+    public void setCompanyImgRes(int companyImgRes) {
+        this.companyImgRes = companyImgRes;
     }
 
     public String getCompanyName() {

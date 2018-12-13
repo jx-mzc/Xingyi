@@ -37,6 +37,7 @@ public class ProjectDAO {
         values = new ContentValues();
         //开始组装数据
         values.put("adminId",project.getAdminId());
+        values.put("projectImgRes",project.getProjectImgRes());
         values.put("projectName",project.getProjectName());
         values.put("projectIntroduction",project.getProjectIntroduction());
         values.put("projectUse",project.getProjectUse());
@@ -73,6 +74,7 @@ public class ProjectDAO {
         values = new ContentValues();
         //开始组装数据
         values.put("adminId",project.getAdminId());
+        values.put("projectImgRes",project.getProjectImgRes());
         values.put("projectName",project.getProjectName());
         values.put("projectIntroduction",project.getProjectIntroduction());
         values.put("projectUse",project.getProjectUse());
@@ -100,6 +102,7 @@ public class ProjectDAO {
             return new Project(
                     cursor.getInt(cursor.getColumnIndex("_id")),
                     cursor.getInt(cursor.getColumnIndex("adminId")),
+                    cursor.getInt(cursor.getColumnIndex("projectImgRes")),
                     cursor.getString(cursor.getColumnIndex("projectName")),
                     cursor.getString(cursor.getColumnIndex("projectIntroduction")),
                     cursor.getString(cursor.getColumnIndex("projectUse")),
@@ -129,6 +132,7 @@ public class ProjectDAO {
             projectList.add(new Project(
                     cursor.getInt(cursor.getColumnIndex("_id")),
                     cursor.getInt(cursor.getColumnIndex("adminId")),
+                    cursor.getInt(cursor.getColumnIndex("projectImgRes")),
                     cursor.getString(cursor.getColumnIndex("projectName")),
                     cursor.getString(cursor.getColumnIndex("projectIntroduction")),
                     cursor.getString(cursor.getColumnIndex("projectUse")),
@@ -158,6 +162,7 @@ public class ProjectDAO {
             newsPraiseList.add(new Project(
                     cursor.getInt(cursor.getColumnIndex("_id")),
                     cursor.getInt(cursor.getColumnIndex("adminId")),
+                    cursor.getInt(cursor.getColumnIndex("projectImgRes")),
                     cursor.getString(cursor.getColumnIndex("projectName")),
                     cursor.getString(cursor.getColumnIndex("projectIntroduction")),
                     cursor.getString(cursor.getColumnIndex("projectUse")),
@@ -187,6 +192,7 @@ public class ProjectDAO {
             newsPraiseList.add(new Project(
                     cursor.getInt(cursor.getColumnIndex("_id")),
                     cursor.getInt(cursor.getColumnIndex("adminId")),
+                    cursor.getInt(cursor.getColumnIndex("projectImgRes")),
                     cursor.getString(cursor.getColumnIndex("projectName")),
                     cursor.getString(cursor.getColumnIndex("projectIntroduction")),
                     cursor.getString(cursor.getColumnIndex("projectUse")),
@@ -216,6 +222,7 @@ public class ProjectDAO {
             newsPraiseList.add(new Project(
                     cursor.getInt(cursor.getColumnIndex("_id")),
                     cursor.getInt(cursor.getColumnIndex("adminId")),
+                    cursor.getInt(cursor.getColumnIndex("projectImgRes")),
                     cursor.getString(cursor.getColumnIndex("projectName")),
                     cursor.getString(cursor.getColumnIndex("projectIntroduction")),
                     cursor.getString(cursor.getColumnIndex("projectUse")),
