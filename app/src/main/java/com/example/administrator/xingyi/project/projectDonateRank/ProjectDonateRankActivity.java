@@ -51,6 +51,10 @@ public class ProjectDonateRankActivity extends AppCompatActivity {
         ActivityCollector.addActivity(this);
         projectId = getIntent().getIntExtra("project_id",0);
         userId = getIntent().getIntExtra("user_id",0);
+        initView();
+    }
+
+    private void initView() {
         recyclerView = findViewById(R.id.rv_project_donate_rank);
         titleBar = findViewById(R.id.title_donate_rank);
         rivTouxiang = findViewById(R.id.riv_my_donate_touxiang);
@@ -59,29 +63,9 @@ public class ProjectDonateRankActivity extends AppCompatActivity {
         tvMyRank = findViewById(R.id.tv_my_donate_rank);
         user = new UserDAO(this).query(userId);
         donate = new DonateDAO(this).query(userId,projectId);
-        initView();
-        titleBar.setOnTitleBarListener(new OnTitleBarListener() {
-            @Override
-            public void onLeftClick(View v) {
-                finish();
-            }
-
-            @Override
-            public void onTitleClick(View v) {
-
-            }
-
-            @Override
-            public void onRightClick(View v) {
-
-            }
-        });
-    }
-
-    private void initView() {
         projectDonateRecyclerView = new ProjectDonateRecyclerView(recyclerView,this,projectId);
         projectDonateRecyclerView.setLayoutManager();//设置recyclerview
-       // rivTouxiang.setImageResource(user.getUserImgRes());
+//        rivTouxiang.setImageResource(user.getUserImgRes());
         rivTouxiang.setImageResource(R.drawable.touxiang);
         tvUserName.setText(user.getName());
 //        if (donate != null){
@@ -100,6 +84,23 @@ public class ProjectDonateRankActivity extends AppCompatActivity {
             tvDonateStars.setText("0");
             tvMyRank.setText("无排名");
 //        }
+        //设置标题监听
+        titleBar.setOnTitleBarListener(new OnTitleBarListener() {
+            @Override
+            public void onLeftClick(View v) {
+                finish();
+            }
+
+            @Override
+            public void onTitleClick(View v) {
+
+            }
+
+            @Override
+            public void onRightClick(View v) {
+
+            }
+        });
     }
 
     @Override

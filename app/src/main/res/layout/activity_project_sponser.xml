@@ -12,6 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_55"
         app:icon_left="@drawable/ic_back"
+        app:color_title="@color/black"
+        app:size_title="20sp"
         app:title="资助方详情">
     </com.hjq.bar.TitleBar>
     <ScrollView

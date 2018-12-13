@@ -102,6 +102,7 @@ public class DonateProjectDialog {
                 etDonateCustom.setFocusableInTouchMode(true);
                 etDonateCustom.requestFocus();
                 InputMethodManager inputManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                //软键盘弹出
                 inputManager.showSoftInput(etDonateCustom, 0);
                 btConfirmDonate.setEnabled(false);
                 btConfirmDonate.setAlpha(0.5f);

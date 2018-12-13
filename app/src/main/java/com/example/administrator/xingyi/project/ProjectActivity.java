@@ -21,6 +21,7 @@ import com.example.administrator.xingyi.model.Project;
 import com.example.administrator.xingyi.model.ProjectPraise;
 import com.example.administrator.xingyi.project.projectDonate.DonateProjectDialog;
 import com.example.administrator.xingyi.project.projectDonateRank.ProjectDonateRankActivity;
+import com.example.administrator.xingyi.project.projectMessage.ProjectMessageActivity;
 import com.example.administrator.xingyi.project.projectOriginator.ProjectOriginatorActivity;
 import com.example.administrator.xingyi.project.projectSponser.ProjectSponserActivity;
 import com.hjq.bar.OnTitleBarListener;
@@ -170,6 +171,7 @@ public class ProjectActivity extends AppCompatActivity implements View.OnClickLi
                 }
                 break;
             case R.id.iv_project_message:
+                ProjectMessageActivity.actionStars(ProjectActivity.this,userId,projectId);
                 break;
             case R.id.iv_project_share:
                 break;

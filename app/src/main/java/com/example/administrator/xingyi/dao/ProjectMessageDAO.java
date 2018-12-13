@@ -155,6 +155,27 @@ public class ProjectMessageDAO {
     }
     /**
      * @Author:  Infinity
+     * @Date:  2018/12/13 0013
+     * @Description:  查询某个项目的所有项目留言信息,并按时间顺序排序
+     */
+    public List<ProjectMessage> getUserScrollData(int projectId){
+        List<ProjectMessage> projectMessageList = new ArrayList<ProjectMessage>();// 创建集合对象
+        db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
+        Cursor cursor = db.rawQuery("select * from tb_projectMessage where projectId = ? order by _id desc",
+                new String[] {String.valueOf(projectId)});
+        while (cursor.moveToNext()){
+            //遍历Cursor对象，并将数据添加到集合中返回
+            projectMessageList.add(new ProjectMessage(
+                    cursor.getInt(cursor.getColumnIndex("_id")),
+                    cursor.getInt(cursor.getColumnIndex("userId")),
+                    cursor.getInt(cursor.getColumnIndex("projectId")),
+                    cursor.getString(cursor.getColumnIndex("content")),
+                    cursor.getString(cursor.getColumnIndex("messageTime"))));
+        }
+        return projectMessageList;// 返回集合
+    }
+    /**
+     * @Author:  Infinity
      * @Date:  2018/11/25 0025
      * @Description:  获取项目留言总记录数
      */
