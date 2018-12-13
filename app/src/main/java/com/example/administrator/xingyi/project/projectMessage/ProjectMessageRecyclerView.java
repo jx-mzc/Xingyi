@@ -65,7 +65,7 @@ public class ProjectMessageRecyclerView {
             userImgRes = R.drawable.moren_touxiang;
             userName = "用户"+i;
             messageContent = "支持公益，加油！";
-            messageTime = "2018-12-"+(20-i);
+            messageTime = "2018-12-"+(21-i);
             ProjectMessageView projectMessageView = new ProjectMessageView(userImgRes,userName,messageContent,messageTime);
             projectMessageViewList.add(projectMessageView);
         }
