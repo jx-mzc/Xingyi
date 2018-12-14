@@ -37,7 +37,7 @@ public class CommodityDAO {
         db = myDatabaseHelper.getWritableDatabase();
         values = new ContentValues();
         //开始组装数据
-        values.put("commodityImgRes",commodity.getCommodityImgRes());
+//        values.put("commodityImgRes",commodity.getCommodityImgRes());
         values.put("commodityName",commodity.getCommodityName());
         values.put("commodityIntroduction",commodity.getCommodityIntroduction());
         values.put("commodityStars",commodity.getCommodityStars());
@@ -65,7 +65,7 @@ public class CommodityDAO {
         db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
         values = new ContentValues();
         //开始组装数据
-        values.put("commodityImgRes",commodity.getCommodityImgRes());
+//        values.put("commodityImgRes",commodity.getCommodityImgRes());
         values.put("commodityName",commodity.getCommodityName());
         values.put("commodityIntroduction",commodity.getCommodityIntroduction());
         values.put("commodityStars",commodity.getCommodityStars());
@@ -84,7 +84,7 @@ public class CommodityDAO {
             //遍历Cursor对象，并将数据存储到Commodity类中返回
             return new Commodity(
                     cursor.getInt(cursor.getColumnIndex("_id")),
-                    cursor.getInt(cursor.getColumnIndex("commodityImgRes")),
+//                    cursor.getInt(cursor.getColumnIndex("commodityImgRes")),
                     cursor.getString(cursor.getColumnIndex("commodityName")),
                     cursor.getString(cursor.getColumnIndex("commodityIntroduction")),
                     cursor.getInt(cursor.getColumnIndex("commodityStars")));
@@ -105,7 +105,7 @@ public class CommodityDAO {
             //遍历Cursor对象，并将数据添加到集合中返回
             commodityList.add(new Commodity(
                     cursor.getInt(cursor.getColumnIndex("_id")),
-                    cursor.getInt(cursor.getColumnIndex("commodityImgRes")),
+//                    cursor.getInt(cursor.getColumnIndex("commodityImgRes")),
                     cursor.getString(cursor.getColumnIndex("commodityName")),
                     CommodityDetailActivity.COMMODITY_IMAGES[cursor.getInt(cursor.getColumnIndex("_id"))-1],
                     cursor.getString(cursor.getColumnIndex("commodityIntroduction")),

@@ -282,7 +282,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         long telNumber = 5201314;
                         String addressText = "未知";
                         if (!tel.getText().toString().equals("")){
-                            telNumber = Integer.parseInt(tel.getText().toString());
+                            telNumber = Long.parseLong(tel.getText().toString());
                         }
                         if (!address.getText().toString().equals("")){
                             addressText = address.getText().toString();

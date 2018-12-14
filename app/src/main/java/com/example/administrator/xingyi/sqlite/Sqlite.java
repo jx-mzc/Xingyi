@@ -24,7 +24,7 @@ public class Sqlite {//赤、橙、黄、绿、青、蓝、紫
             "\"userImgRes\" INTEGER NOT NULL,\n" +
             "\"name\" TEXT NOT NULL,\n" +
             "\"pwd\" TEXT NOT NULL,\n" +
-            "\"tel\" INTEGER(11) NOT NULL DEFAULT 00000000000,\n" +
+            "\"tel\" BIGINT NOT NULL DEFAULT 00000000000,\n" +
             "\"address\" TEXT NOT NULL DEFAULT unknow,\n" +
             "\"registrationDate\" TEXT NOT NULL,\n" +
             "\"donableStars\" INTEGER NOT NULL DEFAULT 0,\n" +
@@ -41,7 +41,7 @@ public class Sqlite {//赤、橙、黄、绿、青、蓝、紫
             ");\n" ,
             "CREATE TABLE \"tb_commodity\" (\n" +
             "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
-            "\"commodityImgRes\" INTEGER NOT NULL,\n" +
+            "\"commodityImgRes\" INTEGER,\n" +
             "\"commodityName\" TEXT NOT NULL,\n" +
             "\"commodityIntroduction\" TEXT NOT NULL DEFAULT noIntroduction,\n" +
             "\"commodityStars\" INTEGER NOT NULL DEFAULT 0\n" +
@@ -92,7 +92,7 @@ public class Sqlite {//赤、橙、黄、绿、青、蓝、紫
             "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
             "\"userId\" INTEGER NOT NULL DEFAULT -1,\n" +
             "\"receiver\" TEXT NOT NULL DEFAULT unknow,\n" +
-            "\"tel\" INTEGER(11) NOT NULL DEFAULT 00000000000,\n" +
+            "\"tel\" BIGINT NOT NULL DEFAULT 00000000000,\n" +
             "\"address\" TEXT NOT NULL DEFAULT unknow,\n" +
             "\"exchangeTime\" TEXT NOT NULL,\n" +
             "\"costStars\" INTEGER NOT NULL DEFAULT 0,\n" +

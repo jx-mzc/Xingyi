@@ -4,7 +4,7 @@ public class Exchange {//兑换单实体类
     private int _id;//兑换单ID
     private int userId;//用户ID
     private String receiver;//收货人
-    private int tel;//收货电话
+    private long tel;//收货电话
     private String address;//收货地址
     private String exchangeTime;//兑换时间
     private int costStars;//所花费星星
@@ -14,7 +14,7 @@ public class Exchange {//兑换单实体类
         super();
     }
 
-    public Exchange(int _id, int userId, String receiver, int tel, String address, String exchangeTime, int costStars, String state) {
+    public Exchange(int _id, int userId, String receiver, long tel, String address, String exchangeTime, int costStars, String state) {
         this._id = _id;
         this.userId = userId;
         this.receiver = receiver;
@@ -49,11 +49,11 @@ public class Exchange {//兑换单实体类
         this.receiver = receiver;
     }
 
-    public int getTel() {
+    public long getTel() {
         return tel;
     }
 
-    public void setTel(int tel) {
+    public void setTel(long tel) {
         this.tel = tel;
     }
 
