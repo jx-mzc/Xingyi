@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.administrator.xingyi.exchange.SettlementActivity">
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/title_order"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_55"
+        app:icon_left="@drawable/ic_back"
+        app:size_title="20sp"
+        app:color_title="@color/black"
+        app:title="订单" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/address"
+        android:layout_below="@+id/title_order"
+        >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/location"
+                android:id="@+id/location_icon"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="7dp"
+
+                />
+            <LinearLayout
+                android:id="@+id/receiver_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_alignBaseline="@+id/location_icon"
+                android:layout_alignBottom="@+id/location_icon"
+                android:layout_toEndOf="@+id/location_icon"
+                android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="收货人："/>
+                    <TextView
+                        android:id="@+id/receiver"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ting"/>
+
+                    <TextView
+                        android:id="@+id/telephone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_50"
+                        android:text="5201314" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_address"
+                android:text="收货地址: "
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_below="@+id/receiver_message"
+                android:layout_alignLeft="@+id/receiver_message"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/address_detail"
+                android:textColor="#000"
+                android:text="极乐之地"
+                android:layout_alignBaseline="@+id/tv_address"
+                android:layout_alignBottom="@+id/tv_address"
+                android:layout_toEndOf="@+id/tv_address"
+                />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_right" />
+
+    </RelativeLayout>
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_0.5"
+        android:background="@color/gray"
+        android:layout_below="@+id/address"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/settlement_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view1"
+        android:layout_above="@+id/view2">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/rl_bottom"
+        android:background="@color/gray" />
+
+    <RelativeLayout
+        android:id="@+id/rl_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv_submit_settlement"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@color/red"
+            android:gravity="center"
+            android:text="提交订单"
+            android:textColor="@color/white" />
+
+
+        <TextView
+            android:id="@+id/tv_show_price"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/tv_submit_settlement"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="合计:0.00"
+            android:textColor="@color/red" />
+    </RelativeLayout>
+</RelativeLayout>

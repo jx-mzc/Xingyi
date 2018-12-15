@@ -1,8 +1,9 @@
 package com.example.administrator.xingyi.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {//用户实体类
+public class User implements Serializable {//用户实体类
     private int _id;//用户ID
     private int userImgRes;//用户头像
     private String name;//用户名

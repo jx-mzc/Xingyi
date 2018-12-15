@@ -5,7 +5,14 @@ package com.example.administrator.xingyi.sqlite;
  * Date:  2018/11/26 0026
  * Author:  Infinity
  */
-public class Sqlite {
+public class Sqlite {//赤、橙、黄、绿、青、蓝、紫
+    private static final String insertCommodities = "INSERT INTO tb_commodity (commodityName, commodityIntroduction, commodityStars) VALUES('小红帽', '可爱的小红帽', 55),"
+            + "('小黑帽', '酷酷的小黑帽', 95),"
+            + "('小蓝帽', '低调的小蓝帽', 45),"
+            + "('小绿帽', '绿绿的小绿帽', 9),"
+            + "('小酒帽', '暖暖的小酒帽', 99),"
+            + "('小咖帽', '别致的小咖帽', 65),"
+            + "('小青帽', '平凡的小青帽', 55);";
     private static final String[] sqlite = {"CREATE TABLE \"tb_admin\" (\n" +
             "\"name\" TEXT NOT NULL,\n" +
             "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
@@ -17,7 +24,7 @@ public class Sqlite {
             "\"userImgRes\" INTEGER NOT NULL,\n" +
             "\"name\" TEXT NOT NULL,\n" +
             "\"pwd\" TEXT NOT NULL,\n" +
-            "\"tel\" INTEGER(11) NOT NULL DEFAULT 00000000000,\n" +
+            "\"tel\" BIGINT NOT NULL DEFAULT 00000000000,\n" +
             "\"address\" TEXT NOT NULL DEFAULT unknow,\n" +
             "\"registrationDate\" TEXT NOT NULL,\n" +
             "\"donableStars\" INTEGER NOT NULL DEFAULT 0,\n" +
@@ -34,7 +41,7 @@ public class Sqlite {
             ");\n" ,
             "CREATE TABLE \"tb_commodity\" (\n" +
             "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
-            "\"commodityImgRes\" INTEGER NOT NULL,\n" +
+            "\"commodityImgRes\" INTEGER,\n" +
             "\"commodityName\" TEXT NOT NULL,\n" +
             "\"commodityIntroduction\" TEXT NOT NULL DEFAULT noIntroduction,\n" +
             "\"commodityStars\" INTEGER NOT NULL DEFAULT 0\n" +
@@ -85,7 +92,7 @@ public class Sqlite {
             "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
             "\"userId\" INTEGER NOT NULL DEFAULT -1,\n" +
             "\"receiver\" TEXT NOT NULL DEFAULT unknow,\n" +
-            "\"tel\" INTEGER(11) NOT NULL DEFAULT 00000000000,\n" +
+            "\"tel\" BIGINT NOT NULL DEFAULT 00000000000,\n" +
             "\"address\" TEXT NOT NULL DEFAULT unknow,\n" +
             "\"exchangeTime\" TEXT NOT NULL,\n" +
             "\"costStars\" INTEGER NOT NULL DEFAULT 0,\n" +
@@ -151,6 +158,7 @@ public class Sqlite {
             "\"userId\" INTEGER NOT NULL,\n" +
             "\"commodityId\" INTEGER NOT NULL DEFAULT -1,\n" +
             "\"commodityName\" TEXT NOT NULL DEFAULT 0,\n" +
+            "\"num\" INTEGER NOT NULL DEFAULT 1,\n" +
             "CONSTRAINT \"shoppingCart_user\" FOREIGN KEY (\"userId\") REFERENCES \"tb_user\" (\"_id\") ON DELETE CASCADE ON UPDATE CASCADE,\n" +
             "CONSTRAINT \"shoppingCart_commodity\" FOREIGN KEY (\"commodityId\") REFERENCES \"tb_commodity\" (\"_id\") ON UPDATE CASCADE\n" +
             ");\n" ,
@@ -167,7 +175,8 @@ public class Sqlite {
             "\"stepNum\" INTEGER NOT NULL DEFAULT 0,\n" +
             "\"timeBlock\" TEXT NOT NULL,\n" +
             "CONSTRAINT \"stepNumDetails\" FOREIGN KEY (\"stepnumId\") REFERENCES \"tb_stepNum\" (\"userId\") ON DELETE CASCADE ON UPDATE CASCADE\n" +
-            ");\n"};
+            ");\n",
+            insertCommodities};
 
     public String[] getSqlite() {
         return this.sqlite;
