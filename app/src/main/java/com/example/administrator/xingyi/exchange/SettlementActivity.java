@@ -13,9 +13,12 @@ import android.widget.Toast;
 
 import com.example.administrator.xingyi.R;
 import com.example.administrator.xingyi.dao.ExchangeDAO;
+import com.example.administrator.xingyi.dao.ExchangeDetailsDAO;
+import com.example.administrator.xingyi.dao.ShoppingCartDAO;
 import com.example.administrator.xingyi.dao.UserDAO;
 import com.example.administrator.xingyi.exchange.adapter.OrderAdapter;
 import com.example.administrator.xingyi.model.Exchange;
+import com.example.administrator.xingyi.model.ExchangeDetails;
 import com.example.administrator.xingyi.model.ShoppingCartItem;
 import com.example.administrator.xingyi.model.User;
 import com.example.administrator.xingyi.util.SharedPreferencesUtils;
@@ -96,15 +99,37 @@ public class SettlementActivity extends AppCompatActivity implements View.OnClic
             case R.id.tv_submit_settlement:
                 //兑换单入库
                 Exchange exchange = new Exchange();
+                exchange.setUserId(mUser.get_id());
                 exchange.setAddress(mUser.getAddress());
                 exchange.setCostStars((int) totalPrice);
                 exchange.setReceiver(mUser.getName());
                 exchange.setExchangeTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
                 exchange.setState("未知");
                 exchange.setTel(mUser.getTel());
-                new ExchangeDAO(this).add(exchange);
+                ExchangeDAO exchangeDAO = new ExchangeDAO(this);
+                exchangeDAO.add(exchange);
+                //兑换单明细入库
+                int exchangeId = exchangeDAO.getExchangeScrollData((int) exchangeDAO.getExchangeCount(mUser.get_id()),1, mUser.get_id()).get(0).get_id();
+                ExchangeDetailsDAO exchangeDetailsDAO = new ExchangeDetailsDAO(this);
+                ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAO(this);
+                int ids[] = new int[orderList.size()];
+                for (int i = 0; i<orderList.size(); i++){
+
+                    ExchangeDetails exchangeDetails = new ExchangeDetails();
+                    exchangeDetails.setExchangeId(exchangeId);
+                    exchangeDetails.setCommodityId(orderList.get(i).getCommodity_id());
+                    exchangeDetails.setCommodityName(orderList.get(i).getCommodityName());
+                    exchangeDetails.setNum(orderList.get(i).getCount());
+                    exchangeDetailsDAO.add(exchangeDetails);
+                    if (orderList.get(i).get_id()!=0){
+                        shoppingCartDAO.delete(orderList.get(i).get_id());
+                    }
+
+                }
+
                 Toast.makeText(SettlementActivity.this,"兑换单入库成功！", Toast.LENGTH_SHORT).show();
                 //删除购物车项
+
                 finish();
                 break;
 

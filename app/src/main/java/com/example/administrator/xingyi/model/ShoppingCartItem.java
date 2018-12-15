@@ -17,6 +17,8 @@ public class ShoppingCartItem implements Serializable {
     private boolean choosed;//是否被选中
     private int count;//购买数量
 
+    public ShoppingCartItem(){}
+
     public ShoppingCartItem(int _id, int user_id, int commodity_id, String commodityName, int imageId, String commodityIntroduction, int commodityStars, boolean choosed, int count) {
         this._id = _id;
         this.user_id = user_id;

@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/discount_text"
                 android:textColor="#000"
-                android:text="【爱初心】新用户立减5星"
+                android:text="【爱初心】新用户全宇宙包邮"
                 android:layout_marginStart="18dp"
                 android:layout_alignBaseline="@+id/discount"
                 android:layout_alignBottom="@+id/discount"

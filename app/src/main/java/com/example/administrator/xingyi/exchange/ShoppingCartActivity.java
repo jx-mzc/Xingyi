@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.xingyi.R;
 import com.example.administrator.xingyi.dao.ShoppingCartDAO;
@@ -56,6 +57,12 @@ public class ShoppingCartActivity extends AppCompatActivity implements View.OnCl
         initData();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initData();
+        statistics();
+    }
 
     protected void initView() {
         titleBar = findViewById(R.id.title_shoppingcart);
@@ -180,6 +187,8 @@ public class ShoppingCartActivity extends AppCompatActivity implements View.OnCl
                         bundle.putSerializable("orderList", (Serializable) orderList);
                         intent.putExtras(bundle);
                         startActivity(intent);
+                    }else {
+                        Toast.makeText(this,"请选择要结算的商品", Toast.LENGTH_SHORT).show();
                     }
                 }
                 break;

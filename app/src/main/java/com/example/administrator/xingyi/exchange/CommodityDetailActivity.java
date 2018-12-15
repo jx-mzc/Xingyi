@@ -17,9 +17,14 @@ import com.example.administrator.xingyi.dao.ShoppingCartDAO;
 import com.example.administrator.xingyi.dao.UserDAO;
 import com.example.administrator.xingyi.model.Commodity;
 import com.example.administrator.xingyi.model.ShoppingCart;
+import com.example.administrator.xingyi.model.ShoppingCartItem;
 import com.example.administrator.xingyi.model.User;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommodityDetailActivity extends AppCompatActivity implements View.OnClickListener {
     public final static int[] COMMODITY_IMAGES = new int[]{R.drawable.big_red, R.drawable.black, R.drawable.deep_blue, R.drawable.grass_green, R.drawable.wine_red, R.drawable.coffee, R.drawable.navy_blue};
@@ -165,6 +170,26 @@ public class CommodityDetailActivity extends AppCompatActivity implements View.O
                 break;
 
             case R.id.exchange_commodity:
+                if (isLogin){
+                    //结算页面
+                    ShoppingCartItem shoppingCartItem = new ShoppingCartItem();
+                    shoppingCartItem.setUser_id(mUser.get_id());
+                    shoppingCartItem.setCommodityName(mCommodity.getCommodityName());
+                    shoppingCartItem.setCommodityStars(mCommodity.getCommodityStars());
+                    shoppingCartItem.setCommodity_id(mCommodity.get_id());
+                    shoppingCartItem.setCommodityIntroduction(mCommodity.getCommodityIntroduction());
+                    shoppingCartItem.setImageId(mCommodity.getImageId());
+                    shoppingCartItem.setCount(1);
+                    List<ShoppingCartItem> orderList = new ArrayList<>();
+                    orderList.add(shoppingCartItem);
+                    Intent intent = new Intent(CommodityDetailActivity.this, SettlementActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("orderList", (Serializable) orderList);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(this,"请登录！", Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
     }
