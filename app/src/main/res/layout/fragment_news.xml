@@ -13,7 +13,7 @@
         app:size_title="20sp"
         app:title="动态" />
 
-    <ScrollView
+    <!--<ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -26,7 +26,19 @@
         </RelativeLayout>
 
 
-    </ScrollView>
+    </ScrollView>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title_news">
+        <ListView
+            android:id="@+id/news_lv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
+    </LinearLayout>
+
+
 
 
 

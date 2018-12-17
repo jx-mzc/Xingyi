@@ -12,7 +12,7 @@ public class News {//动态实体类
         super();
     }
 
-    public News(int _id,int adminId,String content,String time,int newsMessageNum,int newsPraiseNum){
+    public News(int _id, int adminId, String content, String time, int newsMessageNum, int newsPraiseNum) {
         this._id = _id;
         this.adminId = adminId;
         this.content = content;
@@ -68,4 +68,6 @@ public class News {//动态实体类
     public void setNewsPraiseNum(int newsPraiseNum) {
         this.newsPraiseNum = newsPraiseNum;
     }
+
+
 }

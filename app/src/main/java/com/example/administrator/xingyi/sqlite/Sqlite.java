@@ -14,8 +14,9 @@ public class Sqlite {//赤、橙、黄、绿、青、蓝、紫
             + "('小咖帽', '别致的小咖帽', 65),"
             + "('小青帽', '平凡的小青帽', 55);";
     private static final String[] sqlite = {"CREATE TABLE \"tb_admin\" (\n" +
-            "\"name\" TEXT NOT NULL,\n" +
             "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
+            "\"adminImgRes\" INTEGER NOT NULL,\n" +
+            "\"name\" TEXT NOT NULL,\n" +
             "\"pwd\" TEXT NOT NULL,\n" +
             "\"permission\" TEXT NOT NULL DEFAULT unknow\n" +
             ");\n" ,
@@ -111,6 +112,10 @@ public class Sqlite {//赤、橙、黄、绿、青、蓝、紫
             "CREATE TABLE \"tb_news\" (\n" +
             "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
             "\"adminId\" INTEGER NOT NULL,\n" +
+            "\"adminImage\" INTEGER NOT NULL,\n" +
+            "\"iconAdd\" INTEGER NOT NULL,\n" +
+            "\"iconPraise\" INTEGER NOT NULL,\n" +
+            "\"adminName\" TEXT NOT NULL,\n" +
             "\"content\" TEXT NOT NULL,\n" +
             "\"time\" TEXT NOT NULL,\n" +
             "\"newsMessageNum\" INTEGER NOT NULL DEFAULT 0,\n" +

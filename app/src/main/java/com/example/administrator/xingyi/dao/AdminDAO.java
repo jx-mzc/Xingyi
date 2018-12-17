@@ -37,6 +37,7 @@ public class AdminDAO {//管理员类数据访问层对象
         db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
         values = new ContentValues();
         //开始组装数据
+        values.put("adminResImg",admin.getAdminResImg());
         values.put("name",admin.getName());
         values.put("pwd",admin.getPwd());
         values.put("permission",admin.getPermission());
@@ -64,6 +65,7 @@ public class AdminDAO {//管理员类数据访问层对象
         db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
         values = new ContentValues();
         //开始组装数据
+        values.put("adminResImg",admin.getAdminResImg());
         values.put("name",admin.getName());
         values.put("pwd",admin.getPwd());
         values.put("permission",admin.getPermission());
@@ -82,6 +84,7 @@ public class AdminDAO {//管理员类数据访问层对象
             //遍历Cursor对象，并将数据存储到Admin类中返回
             return new Admin(
                     cursor.getInt(cursor.getColumnIndex("_id")),
+                    cursor.getInt(cursor.getColumnIndex("adminResImg")),
                     cursor.getString(cursor.getColumnIndex("name")),
                     cursor.getString(cursor.getColumnIndex("pwd")),
                     cursor.getString(cursor.getColumnIndex("permission")));
@@ -115,6 +118,7 @@ public class AdminDAO {//管理员类数据访问层对象
             //遍历Cursor对象，并将数据存储到Admin类中返回
             return new Admin(
                     cursor.getInt(cursor.getColumnIndex("_id")),
+                    cursor.getInt(cursor.getColumnIndex("adminResImg")),
                     cursor.getString(cursor.getColumnIndex("name")),
                     cursor.getString(cursor.getColumnIndex("pwd")),
                     cursor.getString(cursor.getColumnIndex("permission")));
@@ -135,6 +139,7 @@ public class AdminDAO {//管理员类数据访问层对象
             //遍历Cursor对象，并将数据添加到集合中返回
             adminList.add(new Admin(
                     cursor.getInt(cursor.getColumnIndex("_id")),
+                    cursor.getInt(cursor.getColumnIndex("adminResImg")),
                     cursor.getString(cursor.getColumnIndex("name")),
                     cursor.getString(cursor.getColumnIndex("pwd")),
                     cursor.getString(cursor.getColumnIndex("permission"))));
