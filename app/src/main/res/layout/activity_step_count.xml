@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".getStars.stepCount.StepCountActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    android:orientation="vertical"
+tools:context=".getStars.stepCount.StepCountActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <com.hjq.bar.TitleBar
+        android:id="@+id/title_getstars_step_count"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_55"
+        app:title="计步赚星"
+        app:size_title="20sp"
+        app:color_title="@color/black"
+        app:icon_left="@drawable/ic_back">
+    </com.hjq.bar.TitleBar>
+    <com.example.administrator.xingyi.customView.StepArcView
+        android:id="@+id/sav"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_200"
+        android:layout_marginTop="@dimen/dp_30"/>
+</LinearLayout>

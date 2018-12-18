@@ -30,7 +30,12 @@
         <activity android:name=".project.projectOriginator.ProjectOriginatorActivity" />
         <activity android:name=".project.projectMessage.ProjectMessageActivity" />
         <activity android:name=".getStars.stepCount.StepCountActivity" />
-        <activity android:name=".getStars.clocks.ClocksActivity"></activity>
+        <activity android:name=".getStars.clocks.ClocksActivity" />
+
+        <service
+            android:name=".getStars.stepCount.StepService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
