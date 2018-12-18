@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommodityDetailActivity extends AppCompatActivity implements View.OnClickListener {
-    public final static int[] COMMODITY_IMAGES = new int[]{R.drawable.big_red, R.drawable.black, R.drawable.deep_blue, R.drawable.grass_green, R.drawable.wine_red, R.drawable.coffee, R.drawable.navy_blue};
+    public final static int[] COMMODITY_IMAGES = new int[]{R.drawable.img01, R.drawable.img02, R.drawable.img03, R.drawable.img04, R.drawable.img05, R.drawable.img06, R.drawable.img07};
     //商品图片
     private ImageView commodityImg;
     //商品名称
