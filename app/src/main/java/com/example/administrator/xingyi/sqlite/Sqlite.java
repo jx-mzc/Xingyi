@@ -6,13 +6,13 @@ package com.example.administrator.xingyi.sqlite;
  * Author:  Infinity
  */
 public class Sqlite {//赤、橙、黄、绿、青、蓝、紫
-    private static final String insertCommodities = "INSERT INTO tb_commodity (commodityName, commodityIntroduction, commodityStars) VALUES('小红帽', '可爱的小红帽', 55),"
-            + "('小黑帽', '酷酷的小黑帽', 95),"
-            + "('小蓝帽', '低调的小蓝帽', 45),"
-            + "('小绿帽', '绿绿的小绿帽', 9),"
-            + "('小酒帽', '暖暖的小酒帽', 99),"
-            + "('小咖帽', '别致的小咖帽', 65),"
-            + "('小青帽', '平凡的小青帽', 55);";
+    private static final String insertCommodities = "INSERT INTO tb_commodity (commodityName, commodityIntroduction, commodityStars) VALUES('抱枕', '超级暖暖的抱枕', 55),"
+            + "('围巾', '萌萌哒小围巾', 95),"
+            + "('包包', '超级可爱的小包包', 45),"
+            + "('卫衣', '可爱又保暖的卫衣', 9),"
+            + "('衬衫', '酷酷的衬衫不来一件吗', 99),"
+            + "('香囊', '如意香囊万事如意', 65),"
+            + "('裙子', '美美哒小裙裙', 55);";
     private static final String[] sqlite = {"CREATE TABLE \"tb_admin\" (\n" +
             "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
             "\"adminImgRes\" INTEGER NOT NULL,\n" +
