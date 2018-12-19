@@ -9,15 +9,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.administrator.xingyi.ActivityCollector;
 import com.example.administrator.xingyi.R;
+import com.example.administrator.xingyi.customView.MyLineChart;
 import com.example.administrator.xingyi.customView.StepArcView;
 import com.example.administrator.xingyi.dao.StepNumDAO;
+import com.example.administrator.xingyi.dao.UserDAO;
+import com.example.administrator.xingyi.getStars.stepCount.lineChart.InitLineChart;
 import com.example.administrator.xingyi.model.StepNum;
+import com.example.administrator.xingyi.model.User;
 import com.example.administrator.xingyi.util.SharedPreferencesUtils;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
+
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,41 +34,53 @@ public class StepCountActivity extends AppCompatActivity {
 
     private TitleBar titleBar;
     private StepArcView stepArcView;
+    private Button btExchangeStars;
+    private MyLineChart mLineChart;
     private SharedPreferencesUtils sp;
     private StepNum stepNum;
     private StepNumDAO stepNumDAO;
     private int userId;
     private String date;
     private boolean isBind = false;
+    /**
+     * UI监听器对象
+     */
+    private static UpdateUiCallBack mCallback;
 
+
+    public static void actionStars(Context context,int userId,String date){
+        Intent intent = new Intent(context, StepCountActivity.class);
+        intent.putExtra("user_id",userId);
+        intent.putExtra("date",date);
+        context.startActivity(intent);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_count);
         ActivityCollector.addActivity(this);
+        userId = getIntent().getIntExtra("user_id",0);
+        date = getIntent().getStringExtra("date");
         initView();
     }
 
     private void initView() {
         titleBar = findViewById(R.id.title_getstars_step_count);
         stepArcView = findViewById(R.id.sav);
-        sp = new SharedPreferencesUtils(this);
-        userId = (int) sp.getParam("user_id",0);
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
-        date = df.format(new Date());
-        Log.i("123", String.valueOf(userId));
+        btExchangeStars = findViewById(R.id.bt_exchange_stars_steps);
+        mLineChart = findViewById(R.id.chart_day);
         stepNumDAO = new StepNumDAO(this);
         stepNum = stepNumDAO.query(userId,date);
-        //如果今日无步数数据，则创建今日步数表
-        if (stepNum==null){
-            stepNum = new StepNum(0,userId,0,date);
-            stepNumDAO.add(stepNum);
-            stepArcView.setCurrentCount(2000,0);
-        }else {
-            stepArcView.setCurrentCount(2000,stepNum.getStepNums());
-        }
+        //获取今日步数
+        stepArcView.setCurrentCount(2000,stepNum.getStepNums());
+        //开启计步服务
         setupService();
-
+        if (stepNum.getStepNums() >= 2000){
+            btExchangeStars.setAlpha(1);
+            btExchangeStars.setEnabled(true);
+        }
+        //设置今日步数详细折线图
+        new InitLineChart(mLineChart,userId,date,stepNum.get_id(),this).creatLineChart();
         titleBar.setOnTitleBarListener(new OnTitleBarListener() {
             @Override
             public void onLeftClick(View v) {
@@ -75,6 +95,19 @@ public class StepCountActivity extends AppCompatActivity {
             @Override
             public void onRightClick(View v) {
 
+            }
+        });
+
+        //设置兑换按钮监听
+        btExchangeStars.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int stars;
+                stars = (stepNum.getStepNums()/2000)*200;
+                UserDAO userDAO = new UserDAO(StepCountActivity.this);
+                User user = userDAO.query(userId);
+                user.setDonableStars(user.getDonableStars()+stars);
+                userDAO.update(user);
             }
         });
     }
@@ -109,8 +142,10 @@ public class StepCountActivity extends AppCompatActivity {
                 @Override
                 public void updateUi(int stepCount) {
                     stepArcView.setCurrentCount(2000, stepCount);
+                    new InitLineChart(mLineChart,userId,date,stepNum.get_id(),StepCountActivity.this).creatLineChart();
+                    mCallback.updateUi(stepCount);
                 }
-            });
+            } );
         }
 
         /**
@@ -124,6 +159,15 @@ public class StepCountActivity extends AppCompatActivity {
 
         }
     };
+    /**
+     * 注册UI更新监听
+     *
+     * @param paramICallback
+     */
+
+    public static void registerCallback(UpdateUiCallBack paramICallback) {
+        mCallback = paramICallback;
+    }
     @Override
     public void onDestroy() {
         super.onDestroy();

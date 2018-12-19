@@ -43,7 +43,6 @@
             android:layout_marginLeft="@dimen/margin_normal"
             android:layout_toRightOf="@+id/img_account"
             android:background="@null"
-            android:inputType="number"
             android:hint="请输入账号"
             android:maxLines="1"
             android:textColor="@android:color/black"

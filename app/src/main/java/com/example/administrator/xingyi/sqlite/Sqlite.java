@@ -178,7 +178,8 @@ public class Sqlite {//赤、橙、黄、绿、青、蓝、紫
             "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
             "\"stepnumId\" INTEGER NOT NULL,\n" +
             "\"stepNum\" INTEGER NOT NULL DEFAULT 0,\n" +
-            "\"timeBlock\" TEXT NOT NULL,\n" +
+            "\"timeBlock\" INTEGER NOT NULL,\n" +
+            "\"stepDate\" TEXT NOT NULL,\n" +
             "CONSTRAINT \"stepNumDetails\" FOREIGN KEY (\"stepnumId\") REFERENCES \"tb_stepNum\" (\"userId\") ON DELETE CASCADE ON UPDATE CASCADE\n" +
             ");\n",
             insertCommodities};

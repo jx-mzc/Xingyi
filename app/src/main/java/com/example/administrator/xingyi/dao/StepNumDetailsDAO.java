@@ -39,6 +39,7 @@ public class StepNumDetailsDAO {
         values.put("stepnumId", stepNumDetails.getStepnumId());
         values.put("stepNum",stepNumDetails.getStepNum());
         values.put("timeBlock",stepNumDetails.getTimeBlock());
+        values.put("stepDate",stepNumDetails.getDate());
         db.insert("tb_stepNumDetails",null,values);
     }
     /**
@@ -66,6 +67,7 @@ public class StepNumDetailsDAO {
         values.put("stepnumId", stepNumDetails.getStepnumId());
         values.put("stepNum",stepNumDetails.getStepNum());
         values.put("timeBlock",stepNumDetails.getTimeBlock());
+        values.put("stepDate",stepNumDetails.getDate());
         db.update("tb_stepNumDetails",values,"_id = ?",new String[]{String.valueOf(stepNumDetails.get_id())});
     }
     /**
@@ -83,9 +85,31 @@ public class StepNumDetailsDAO {
                     cursor.getInt(cursor.getColumnIndex("_id")),
                     cursor.getInt(cursor.getColumnIndex("stepnumId")),
                     cursor.getInt(cursor.getColumnIndex("stepNum")),
-                    cursor.getString(cursor.getColumnIndex("timeBlock")));
+                    cursor.getInt(cursor.getColumnIndex("timeBlock")),
+                    cursor.getString(cursor.getColumnIndex("stepDate")));
         }
         return null;// 如果没有信息，则返回null
+    }
+    /**
+     * @Author:  Infinity
+     * @Date:  2018/12/18 0018
+     * @Description:  查询某个用户某一天步数明细信息
+     */
+    public List<StepNumDetails> getScrollData(int stepnumId,String stepDate){
+        List<StepNumDetails> stepNumDetailsList = new ArrayList<StepNumDetails>();// 创建集合对象
+        db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
+        Cursor cursor = db.rawQuery("select * from tb_stepNumDetails where stepnumId = ? and stepDate = ? order by timeBlock asc",
+                new String[] {String.valueOf(stepnumId),stepDate});
+        while (cursor.moveToNext()){
+            //遍历Cursor对象，并将数据添加到集合中返回
+            stepNumDetailsList.add(new StepNumDetails(
+                    cursor.getInt(cursor.getColumnIndex("_id")),
+                    cursor.getInt(cursor.getColumnIndex("stepnumId")),
+                    cursor.getInt(cursor.getColumnIndex("stepNum")),
+                    cursor.getInt(cursor.getColumnIndex("timeBlock")),
+                    cursor.getString(cursor.getColumnIndex("stepDate"))));
+        }
+        return stepNumDetailsList;// 返回集合
     }
     /**
      * @Author:  Infinity
@@ -103,7 +127,8 @@ public class StepNumDetailsDAO {
                     cursor.getInt(cursor.getColumnIndex("_id")),
                     cursor.getInt(cursor.getColumnIndex("stepnumId")),
                     cursor.getInt(cursor.getColumnIndex("stepNum")),
-                    cursor.getString(cursor.getColumnIndex("timeBlock"))));
+                    cursor.getInt(cursor.getColumnIndex("timeBlock")),
+                    cursor.getString(cursor.getColumnIndex("stepDate"))));
         }
         return stepNumDetailsList;// 返回集合
     }
@@ -123,7 +148,8 @@ public class StepNumDetailsDAO {
                     cursor.getInt(cursor.getColumnIndex("_id")),
                     cursor.getInt(cursor.getColumnIndex("stepnumId")),
                     cursor.getInt(cursor.getColumnIndex("stepNum")),
-                    cursor.getString(cursor.getColumnIndex("timeBlock"))));
+                    cursor.getInt(cursor.getColumnIndex("timeBlock")),
+                    cursor.getString(cursor.getColumnIndex("stepDate"))));
         }
         return stepNumDetailsList;// 返回集合
     }

@@ -21,21 +21,27 @@ import android.util.Log;
 
 import com.example.administrator.xingyi.R;
 import com.example.administrator.xingyi.dao.StepNumDAO;
+import com.example.administrator.xingyi.dao.StepNumDetailsDAO;
 import com.example.administrator.xingyi.model.StepNum;
+import com.example.administrator.xingyi.model.StepNumDetails;
 import com.example.administrator.xingyi.util.SharedPreferencesUtils;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class StepService extends Service implements SensorEventListener {
     private SharedPreferencesUtils sp;
     private StepNum stepNum;
     private StepNumDAO stepNumDAO;
+    private List<StepNumDetails> stepNumDetailsList;
+    private StepNumDetailsDAO stepNumDetailsDAO;
     private int userId;
     private String date;
     private String TAG = "StepService";
     /**
-     * 默认为30秒进行一次存储
+     * 默认为5秒进行一次存储
      */
     private static int duration = 5 * 1000;
     /**
@@ -104,6 +110,8 @@ public class StepService extends Service implements SensorEventListener {
         date = getTodayDate();
         stepNumDAO = new StepNumDAO(this);
         stepNum = stepNumDAO.query(userId,date);
+        stepNumDetailsDAO = new StepNumDetailsDAO(this);
+        stepNumDetailsList = stepNumDetailsDAO.getScrollData(stepNum.get_id(),date);
         initNotification();
         initTodayData();
         initBroadcastReceiver();
@@ -405,7 +413,6 @@ public class StepService extends Service implements SensorEventListener {
                 //记录最后一次APP打开到现在的总步数
                 previousStepCount = thisStepCount;
             }
-            Log.d("tempStep", String.valueOf(tempStep));
         } else if (stepSensorType == Sensor.TYPE_STEP_DETECTOR) {
             if (event.values[0] == 1.0) {
                 CURRENT_STEP++;
@@ -422,8 +429,16 @@ public class StepService extends Service implements SensorEventListener {
      */
     private void save() {
         int tempStep = CURRENT_STEP;
+        int blockStep = 0;
         stepNum.setStepNums(tempStep);
         stepNumDAO.update(stepNum);
+        Calendar c = Calendar.getInstance();
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        for (int a = 0;a < hour;a++){
+            blockStep = blockStep + stepNumDetailsList.get(a).getStepNum();
+        }
+        stepNumDetailsList.get(hour).setStepNum(CURRENT_STEP - blockStep);
+        stepNumDetailsDAO.update(stepNumDetailsList.get(hour));
     }
     @Override
     public void onDestroy() {
