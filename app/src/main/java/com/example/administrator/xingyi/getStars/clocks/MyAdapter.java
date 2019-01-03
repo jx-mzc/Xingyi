@@ -11,11 +11,15 @@ import android.widget.Toast;
 
 import com.example.administrator.xingyi.R;
 
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class MyAdapter extends BaseAdapter {
     private Context mContext;
     private List<CheckBean> checkBeanList;
+    Calendar calendar = Calendar.getInstance(Locale.CHINA);
+
 
     public MyAdapter(Context context) {
         mContext = context;
@@ -56,16 +60,20 @@ public class MyAdapter extends BaseAdapter {
         hoder.day.setText("day" + checkBeanList.get(position).day);
         if (checkBeanList.get(position).check_status == CheckBean.CHECK_NO) {
             hoder.status.setImageResource(R.drawable.clocks_checked_wait);
-            hoder.status.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(mContext, "恭喜你，签到成功！", Toast.LENGTH_SHORT).show();
-                    hoder.status.setImageResource(R.drawable.clocks_checked);
-                    hoder.status.setClickable(false);
-                    checkBeanList.get(position).check_status = CheckBean.CHECKED;
-                    /* 在此做一些签到请求的处理 */
-                }
-            });
+            int  mDay = calendar.get(Calendar.DAY_OF_MONTH) ;// 获取当前天以（0开头）
+            if(mDay==checkBeanList.get(position).day){
+                hoder.status.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(mContext, "恭喜你，签到成功！", Toast.LENGTH_SHORT).show();
+                        hoder.status.setImageResource(R.drawable.clocks_checked);
+                        hoder.status.setClickable(false);
+                        checkBeanList.get(position).check_status = CheckBean.CHECKED;
+                        /* 在此做一些签到请求的处理 */
+                    }
+                });
+            }
+
         } else if (checkBeanList.get(position).check_status == CheckBean.CHECK_WAIT) {
             hoder.status.setImageResource(R.drawable.clocks_checked_no);
         } else if (checkBeanList.get(position).check_status == CheckBean.CHECKED) {
