@@ -84,11 +84,13 @@
     <color name="coral">#ff7f50</color><!--珊瑚色 -->
     <color name="hotpink">#ff69b4</color><!--热粉红色 -->
     <color name="tomato">#ff6347</color><!--西红柿色 -->
+    <color name="oryell">#fd9c06</color>
     <color name="orangered">#ff4500</color><!--红橙色 -->
     <color name="deeppink">#ff1493</color><!--深粉红色 -->
     <color name="fuchsia">#ff00ff</color><!--紫红色 -->
     <color name="magenta">#ff00ff</color><!--红紫色 -->
     <color name="red">#ff0000</color><!--红色 -->
+    <color name="orred">#EE2C2C</color>
     <color name="oldlace">#fdf5e6</color><!--老花色 -->
     <color name="lightgoldenrodyellow">#fafad2</color><!--亮金黄色 -->
     <color name="linen">#faf0e6</color><!--亚麻色 -->

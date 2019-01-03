@@ -59,7 +59,7 @@ public class AdviceActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 if(temp.length() > 0){
                     titleBar.setRightColor(getResources().getColor(R.color.tab_checked,null));
-
+                    titleBar.getRightView().setEnabled(true);
                     titleBar.setOnTitleBarListener(new OnTitleBarListener() {
                         @Override
                         public void onLeftClick(View v) {
@@ -76,6 +76,7 @@ public class AdviceActivity extends AppCompatActivity {
                             Toast.makeText(AdviceActivity.this,"提交成功！",Toast.LENGTH_SHORT).show();
                             etAdvice.setText("");
                             titleBar.getRightView().setEnabled(false);
+                            titleBar.setRightColor(getResources().getColor(R.color.gray,null));
                         }
                     });
                 }else {

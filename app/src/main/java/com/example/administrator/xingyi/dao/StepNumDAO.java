@@ -89,6 +89,25 @@ public class StepNumDAO {
     }
     /**
      * @Author:  Infinity
+     * @Date:  2018/12/17 0017
+     * @Description:  根据用户ID和日期查询单条步数信息
+     */
+    public StepNum query(int userId,String stepDate){
+        db = myDatabaseHelper.getWritableDatabase();// 初始化SQLiteDatabase对象
+        Cursor cursor = db.query("tb_stepNum",null,"userId = ? and stepDate = ?",new String[]{String.valueOf(userId),stepDate},
+                null,null,null);
+        if (cursor.moveToNext()){
+            //遍历Cursor对象，并将数据存储到StepNum类中返回
+            return new StepNum(
+                    cursor.getInt(cursor.getColumnIndex("_id")),
+                    cursor.getInt(cursor.getColumnIndex("userId")),
+                    cursor.getInt(cursor.getColumnIndex("stepNums")),
+                    cursor.getString(cursor.getColumnIndex("stepDate")));
+        }
+        return null;// 如果没有信息，则返回null
+    }
+    /**
+     * @Author:  Infinity
      * @Date:  2018/11/25 0025
      * @Description:  查询多条步数信息
      */

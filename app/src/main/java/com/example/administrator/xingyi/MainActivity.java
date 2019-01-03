@@ -10,11 +10,19 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.administrator.xingyi.dao.MyDatabaseHelper;
+import com.example.administrator.xingyi.dao.StepNumDAO;
+import com.example.administrator.xingyi.dao.StepNumDetailsDAO;
 import com.example.administrator.xingyi.exchange.ExchangeFragment;
 import com.example.administrator.xingyi.getStars.GetStarsFragment;
+import com.example.administrator.xingyi.model.StepNum;
+import com.example.administrator.xingyi.model.StepNumDetails;
 import com.example.administrator.xingyi.more.MoreFragment;
 import com.example.administrator.xingyi.news.NewsFragment;
 import com.example.administrator.xingyi.project.ProjectFragment;
+import com.example.administrator.xingyi.util.SharedPreferencesUtils;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -25,14 +33,21 @@ public class MainActivity extends AppCompatActivity {
     private MyDatabaseHelper myDatabaseHelper;
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
+    private SharedPreferencesUtils sp;
+    private StepNum stepNum;
+    private StepNumDAO stepNumDAO;
+    private StepNumDetails stepNumDetails;
+    private StepNumDetailsDAO stepNumDetailsDAO;
+    private int userId;
+    private String date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ActivityCollector.addActivity(this);
-        //myDatabaseHelper = new MyDatabaseHelper(MainActivity.this);
-       // myDatabaseHelper.getWritableDatabase();
+        initStep();
+
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         //默认 >3 的选中效果会影响ViewPager的滑动切换时的效果，故利用反射去掉
@@ -94,6 +109,31 @@ public class MainActivity extends AppCompatActivity {
 
         setupViewPager(viewPager);
     }
+/**
+ * @Author:  Infinity
+ * @Date:  2018/12/18 0018
+ * @Description:  初始化步数表
+ */
+    private void initStep() {
+        sp = new SharedPreferencesUtils(this);
+        if ((boolean)sp.getParam("logining",false)){
+            userId = (int) sp.getParam("user_id",0);
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+            date = df.format(new Date());
+            stepNumDAO = new StepNumDAO(this);
+            stepNumDetailsDAO = new StepNumDetailsDAO(this);
+            stepNum = stepNumDAO.query(userId,date);
+            if (stepNum==null) {
+                stepNum = new StepNum(0, userId, 0, date);
+                stepNumDAO.add(stepNum);
+                int stepNumId = stepNumDAO.query(userId,date).get_id();
+                for (int i = 0;i<24;i++){
+                    stepNumDetails = new StepNumDetails(0,stepNumId,0,i,date);
+                    stepNumDetailsDAO.add(stepNumDetails);
+                }
+            }
+        }
+    }
 
     @Override
     protected void onDestroy() {
@@ -127,4 +167,6 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new MoreFragment());
         viewPager.setAdapter(adapter);
     }
+
+
 }
