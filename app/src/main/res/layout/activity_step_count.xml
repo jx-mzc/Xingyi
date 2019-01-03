@@ -1,9 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".getStars.stepCount.StepCountActivity">
-
-</android.support.constraint.ConstraintLayout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/white"
+android:orientation="vertical"
+tools:context=".getStars.stepCount.StepCountActivity">
+    <com.hjq.bar.TitleBar
+        android:id="@+id/title_getstars_step_count"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_55"
+        app:title="计步赚星"
+        app:size_title="20sp"
+        app:color_title="@color/black"
+        app:icon_left="@drawable/ic_back">
+    </com.hjq.bar.TitleBar>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_15"
+            android:layout_marginEnd="@dimen/dp_15"
+            android:orientation="vertical">
+            <com.example.administrator.xingyi.customView.StepArcView
+                android:id="@+id/sav"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="@dimen/dp_200"
+                android:layout_height="@dimen/dp_200"
+                android:layout_marginTop="@dimen/dp_30"/>
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="满2000步即可兑换星星"
+                android:textSize="14sp"
+                android:alpha="0.8"/>
+            <Button
+                android:id="@+id/bt_exchange_stars_steps"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@drawable/button_round"
+                android:alpha="0.5"
+                android:enabled="false"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:text="现在兑星"/>
+            <View
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0.5"
+                android:background="@color/gray_light">
+            </View>
+            <TextView
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="今日步数明细"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:alpha="0.8"/>
+            <com.example.administrator.xingyi.customView.MyLineChart
+                android:id="@+id/chart_day"
+                android:layout_marginTop="@dimen/dp_5"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_200" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

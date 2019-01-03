@@ -2,44 +2,94 @@ package com.example.administrator.xingyi.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 /**
  * Created by ting on 2018/11/29.
  */
 
 public class SharedPreferencesUtils {
-    private Context myContext;
-    private String spName;
-    private SharedPreferences sp;
-    private SharedPreferences.Editor editor;
-    public SharedPreferencesUtils(Context context, String name){
-        myContext = context;
-        spName = name;
-        sp = myContext.getSharedPreferences(spName, 0);
-        editor = sp.edit();
+    private Context context;
+    /**
+     * 保存在手机里面的文件名
+     */
+
+
+    public SharedPreferencesUtils(Context context) {
+        this.context = context;
+
     }
 
-    public void putBoolean(String name, boolean initValue){
-        editor.putBoolean(name, initValue);
+    /**
+     * 保存数据的方法，我们需要拿到保存数据的具体类型，然后根据类型调用不同的保存方法
+     *
+     * @param key
+     * @param object
+     */
+    public void setParam(String key, Object object) {
+
+        String type = object.getClass().getSimpleName();
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sp.edit();
+        if ("String".equals(type)) {
+            editor.putString(key, object.toString());
+        } else if ("Integer".equals(type)) {
+            editor.putInt(key, (Integer) object);
+        } else if ("Boolean".equals(type)) {
+            editor.putBoolean(key, (Boolean) object);
+        } else if ("Float".equals(type)) {
+            editor.putFloat(key, (Float) object);
+        } else if ("Long".equals(type)) {
+            editor.putLong(key, (Long) object);
+        }
+
+        editor.commit();
     }
 
-    public boolean getBoolean(String name, boolean flag){
-        return sp.getBoolean(name, flag);
+    /**
+     * 得到保存数据的方法，我们根据默认值得到保存的数据的具体类型，然后调用相对于的方法获取值
+     *
+     * @param key
+     * @param defaultObject
+     * @return
+     */
+    public Object getParam(String key, Object defaultObject) {
+        String type = defaultObject.getClass().getSimpleName();
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+
+        if ("String".equals(type)) {
+            return sp.getString(key, (String) defaultObject);
+        } else if ("Integer".equals(type)) {
+            return sp.getInt(key, (Integer) defaultObject);
+        } else if ("Boolean".equals(type)) {
+            return sp.getBoolean(key, (Boolean) defaultObject);
+        } else if ("Float".equals(type)) {
+            return sp.getFloat(key, (Float) defaultObject);
+        } else if ("Long".equals(type)) {
+            return sp.getLong(key, (Long) defaultObject);
+        }
+
+        return null;
     }
 
-    public String getString(String name){
-        return sp.getString(name, name);
+    /**
+     * 得到保存数据的方法，我们根据默认值得到保存的数据的具体类型，然后调用相对于的方法获取值
+     *
+     * @param key
+     * @return
+     */
+    // Delete
+    public void remove(String key) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.remove(key);
+        editor.commit();
     }
 
-    public int getInt(String name){
-        return sp.getInt(name, 0);
-    }
-
-    public float getFloat(String name){
-        return sp.getFloat(name, 0);
-    }
-
-    public long getLong(String name){
-        return sp.getLong(name, 0);
+    public void clear() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.clear();
+        editor.commit();
     }
 }

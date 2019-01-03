@@ -19,6 +19,7 @@ import com.example.administrator.xingyi.R;
 import com.example.administrator.xingyi.customView.ProgressView;
 import com.example.administrator.xingyi.login.LoginActivity;
 import com.example.administrator.xingyi.model.Project;
+import com.example.administrator.xingyi.util.AdjustLogin;
 
 import java.util.List;
 
@@ -30,7 +31,6 @@ import java.util.List;
 public class ProjectRecyclerViewAdapter extends RecyclerView.Adapter<ProjectRecyclerViewAdapter.ViewHolder>{
     private List<ProjectView> list;
     private Context context;
-    private SharedPreferences pref;
 
     public ProjectRecyclerViewAdapter(List<ProjectView> list,Context context){
         this.list = list;
@@ -63,30 +63,9 @@ public class ProjectRecyclerViewAdapter extends RecyclerView.Adapter<ProjectRecy
         holder.projctView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pref = PreferenceManager.getDefaultSharedPreferences(context);
-                if (pref.getBoolean("logining",false)){//判断是否登录
+                if (AdjustLogin.isLogin(context)){//判断是否登录
                     ProjectView projectView = list.get(holder.getAdapterPosition());
                     ProjectActivity.actionStars(context,projectView.getProjectId());
-                }else {
-                    AlertDialog alertDialog;
-                    AlertDialog.Builder builder;
-                    builder = new AlertDialog.Builder(context);
-                    alertDialog = builder.setTitle("你还未登录")
-                                    .setMessage("请登录或者注册")
-                                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-
-                                        }
-                                    })
-                                    .setPositiveButton("去登录或注册", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            Intent intent = new Intent(context, LoginActivity.class);
-                                            context.startActivity(intent);
-                                        }
-                                    }).create();
-                    alertDialog.show();
                 }
             }
         });

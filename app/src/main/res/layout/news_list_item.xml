@@ -126,11 +126,9 @@
                         android:layout_height="30dp"
                         android:layout_gravity="center"
                         android:layout_marginRight="10dp"
-                        android:src="@drawable/news_icon_evalute"/>
+                        android:src="@drawable/ic_message"/>
                 </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>
-
-
 </LinearLayout>
