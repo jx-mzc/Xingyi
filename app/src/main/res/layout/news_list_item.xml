@@ -117,16 +117,25 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="6dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="right"
                     android:orientation="horizontal">
-                    <ImageView
-                        android:id="@+id/news_iv_evalute"
-                        android:layout_width="30dp"
+                    <EditText
+                        android:layout_width="wrap_content"
                         android:layout_height="30dp"
+                        android:background="@drawable/edittext_shape_news"
                         android:layout_gravity="center"
-                        android:layout_marginRight="10dp"
-                        android:src="@drawable/news_icon_evalute"/>
+                        android:textSize="13dp"
+                        android:hint=" 评论"
+                        android:layout_weight="1"/>
+                    <Button
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="14dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/button_shape_news"
+                        android:text="发送"/>
                 </LinearLayout>
 
             </LinearLayout>

@@ -12,7 +12,7 @@
         app:icon_left="@drawable/ic_back"
         app:size_title="20sp"
         app:color_title="@color/black"
-        app:title="商品详情"  />
+        app:title="商品详情" />
 
     <ScrollView
         android:layout_width="match_parent"
