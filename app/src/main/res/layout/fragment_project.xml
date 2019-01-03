@@ -1,56 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/white"
-    android:orientation="vertical">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <com.hjq.bar.TitleBar
         android:id="@+id/title_project"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_55"
-        app:color_title="@color/black"
         app:icon_back="false"
         app:size_title="20sp"
+        app:color_title="@color/black"
         app:title="公益项目" />
 
-    <ScrollView
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-
-        <LinearLayout
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <com.zhouwei.mzbanner.MZBannerView
+        android:id="@+id/project_banner"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:open_mz_mode="true"
+        app:canLoop="true"
+        app:indicatorAlign="center"
+        app:indicatorPaddingLeft="10dp"
+        app:middle_page_cover="true"
+        />
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:descendantFocusability="blocksDescendants">
 
-            <com.zhouwei.mzbanner.MZBannerView
-                android:id="@+id/project_banner"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                app:canLoop="true"
-                app:indicatorAlign="center"
-                app:indicatorPaddingLeft="10dp"
-                app:middle_page_cover="true"
-                app:open_mz_mode="true" />
+<android.support.v7.widget.RecyclerView
+    android:id="@+id/rv_project"
+    android:layout_marginTop="@dimen/dp_10"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:descendantFocusability="blocksDescendants">
+</android.support.v7.widget.RecyclerView>
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_project"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_10">
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>
 
-                </android.support.v7.widget.RecyclerView>
-
-            </RelativeLayout>
-        </LinearLayout>
-    </ScrollView>
 
 
 </LinearLayout>
